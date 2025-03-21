@@ -1,0 +1,61 @@
+.employeeListContainer {
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .employeeTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .employeeTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .employeeTable th,
+  .employeeTable td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employeeTable th {
+    background: #2c2f3a;
+    color: white;
+  }
+  
+  .profileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .editButton {
+    background: #ffcc00;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .deleteButton {
+    background: #ff4d4d;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .noData {
+    text-align: center;
+    padding: 20px;
+    color: red;
+  }
+   .addButton{
+    bottom: 17px;
+    position: relative;
+    left: 1110px;
+   }
