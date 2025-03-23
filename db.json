@@ -1,18 +1,78 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "salary": 50000,
-      "profileImage": "/assets/boy1.jpeg"
+      "id": "7e06",
+      "name": "sw1",
+      "profileImage": "/src/assets/girl2.jpeg",
+      "gender": "Male",
+      "department": [
+        "Finance"
+      ],
+      "salary": "50000",
+      "note": "ws",
+      "redirect": false,
+      "startDate": "2023-02-11",
+      "notes": ""
     },
     {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "salary": 70000,
-      "profileImage": "/assets/girl1.jpeg"
+      "id": "7811",
+      "name": "de",
+      "profileImage": "/src/assets/girl2.jpeg",
+      "gender": "Female",
+      "department": [
+        "Sales"
+      ],
+      "salary": "80000",
+      "note": "deed",
+      "redirect": false,
+      "startDate": "2003-03-05"
+    },
+    {
+      "id": "5647",
+      "name": "dwa",
+      "profileImage": "/src/assets/boy2.jpeg",
+      "gender": "Female",
+      "department": [
+        "Engineer",
+        "Finance",
+        "Sales",
+        "HR"
+      ],
+      "salary": "60000",
+      "note": "de",
+      "redirect": false,
+      "startDate": "2024-06-07",
+      "notes": ""
+    },
+    {
+      "id": "b5ff",
+      "name": "harsh raj",
+      "profileImage": "/src/assets/boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "70000",
+      "note": "ednedm",
+      "redirect": false,
+      "redirectToList": false,
+      "error": null,
+      "startDate": "2023-02-03",
+      "notes": ""
+    },
+    {
+      "id": "5d16",
+      "name": "Raghav",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "Finance",
+        "HR"
+      ],
+      "salary": "60000",
+      "startDate": "2025-01-02",
+      "redirect": false,
+      "notes": ""
     }
   ]
 }

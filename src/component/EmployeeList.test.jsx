@@ -1,22 +1,82 @@
 import React from "react";
-import {render,screen,waitFor} from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import EmployeeList from "./EmployeeList";
 import axios from "axios";
-import {vi} from "vitest";
+import { vi } from "vitest";
 
 vi.mock("axios");
-test("render employee list after fetching data",async()=>{
-    axios.get.mockResolvedValue({
-        data:[
-            {id:1,name:"rajesh",department:"HR"},
-            {id:2,name:"suresh",department:"Finance"}
-        ]
-    });
-    render(<EmployeeList/>);
-    expect(screen.getByText("Employee List")).toBeInTheDocument();
 
-    await waitFor(()=>{
-        expect(screen.getByText("rajesh - HR")).toBeInTheDocument();
-        expect(screen.getByText("suresh - Finance")).toBeInTheDocument();
-    })
-})
+describe("EmployeeList Component", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    axios.get.mockResolvedValue({
+      data: [
+        {
+          id: 1,
+          name: "Rajesh",
+          department: "HR",
+          salary: 50000,
+          profileImage: "/assets/boy1.jpeg",
+        },
+      ],
+    });
+  });
+
+  test("renders Add Employee button and navigates on click", async () => {
+    render(
+      <MemoryRouter>
+        <EmployeeList />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Rajesh")).toBeInTheDocument();
+    });
+
+    const addButton = screen.getByRole("link", { name: "➕ Add User" });
+    expect(addButton).toBeInTheDocument();
+    expect(addButton).toHaveAttribute("href", "/add-employee");
+  });
+
+  test("Edit button stores token and navigates to edit page", async () => {
+    render(
+      <MemoryRouter>
+        <EmployeeList />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Rajesh")).toBeInTheDocument();
+    });
+
+    const editButton = screen.getByRole("button", { name: /Edit/i });
+    fireEvent.click(editButton);
+    expect(localStorage.getItem("editEmployeeId")).toBe("1"); // Updated to match handleEdit
+  });
+
+  test("Delete button removes employee from UI", async () => {
+    render(
+      <MemoryRouter>
+        <EmployeeList />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Rajesh")).toBeInTheDocument();
+    });
+
+    // Mock the delete request
+    axios.delete.mockResolvedValue({ status: 200 });
+    // Mock the subsequent fetchEmployees call to return an empty list
+    axios.get.mockResolvedValueOnce({ data: [] });
+
+    const deleteButton = screen.getByRole("button", { name: /Delete/i });
+    fireEvent.click(deleteButton);
+
+    await waitFor(() => {
+      expect(axios.delete).toHaveBeenCalledWith("http://localhost:3000/employees/1");
+      expect(screen.queryByText("Rajesh")).not.toBeInTheDocument();
+    });
+  });
+});

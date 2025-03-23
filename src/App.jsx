@@ -1,21 +1,26 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./component/Header";
-import EmployeeForm from "./component/EmployeeForm";
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import EmployeeList from "./component/EmployeeList";
+import EmployeeForm from "./component/EmployeeForm";
+import Login from "./component/Login";
 import "./styles/global.scss";
+
+// A wrapper component to pass navigate to the Login class component
+const LoginWithNavigate = (props) => {
+  const navigate = useNavigate();
+  return <Login {...props} navigate={navigate} />;
+};
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="container">
-          <Header />
           <Routes>
-            {/* ✅ Default Page - Employee List */}
-            <Route path="/" element={<EmployeeList />} />
-
-            {/* ✅ Add Employee Form Page */}
+            {/* Redirect from "/" to "/login" */}
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<LoginWithNavigate />} />
+            <Route path="/employees" element={<EmployeeList />} />
             <Route path="/add-employee" element={<EmployeeForm />} />
           </Routes>
         </div>
