@@ -115,6 +115,8 @@ class EmployeeForm extends Component {
         <Header /> 
         <div className={styles.formContainer}>
           <form onSubmit={this.handleSubmit}>
+          <h1>Employee Payroll Form</h1>
+
             <label>Name</label>
             <input
               type="text"

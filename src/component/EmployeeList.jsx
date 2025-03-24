@@ -54,7 +54,10 @@ class EmployeeList extends Component {
         <Header /> {/* ✅ Added Header */}
 
         <header className={styles.header}>
+          <div className={styles.details}>
           <h2>Employee Details</h2>
+          </div>
+          
           <div className={styles.headerActions}>
             <div className={styles.searchContainer}>
               <input

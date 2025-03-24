@@ -1,20 +1,6 @@
 {
   "employees": [
     {
-      "id": "7e06",
-      "name": "sw1",
-      "profileImage": "/src/assets/girl2.jpeg",
-      "gender": "Male",
-      "department": [
-        "Finance"
-      ],
-      "salary": "50000",
-      "note": "ws",
-      "redirect": false,
-      "startDate": "2023-02-11",
-      "notes": ""
-    },
-    {
       "id": "7811",
       "name": "de",
       "profileImage": "/src/assets/girl2.jpeg",
@@ -73,6 +59,43 @@
       "startDate": "2025-01-02",
       "redirect": false,
       "notes": ""
+    },
+    {
+      "id": "6c7d",
+      "name": "rahul",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "50000",
+      "notes": "hiiii hello",
+      "redirect": false,
+      "startDate": "2011-08-16"
+    },
+    {
+      "id": "1493",
+      "name": "mayank ",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [],
+      "salary": "60000",
+      "notes": "",
+      "redirect": false
+    },
+    {
+      "id": "8081",
+      "name": "Sam",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "notes": "Corythosaurus (do latim \"lagarto de capacete\") foi um gênero de dinossauro herbívoro e bípede que viveu no período Cretáceo. Media em torno de nove metros de comprimento e pesava cerca de quatro toneladas. O Corythosaurus possuía uma crista na cabeça, assim como outros membros da sua família. Viveu na América do Norte e seu habitat natural era as áreas litorâneas, onde havia mais alimento e menos predadores.",
+      "redirect": false,
+      "startDate": "2015-06-13"
     }
   ]
 }

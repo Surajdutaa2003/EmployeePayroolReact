@@ -1,9 +1,13 @@
+.header{
+  margin-top: 100px;
+}
 .container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-  padding: 20px;
+  display: flex
+  ;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      padding-top: 6%;
 
   .formContainer {
     display: flex;
@@ -11,6 +15,7 @@
     align-items: center;
     justify-content: center;
     flex: 1;
+    width: 100%;
 
     form {
       background-color: #fff;
@@ -26,14 +31,14 @@
         color: #666;
         margin-bottom: 5px;
         margin-top: 15px;
-        text-transform: uppercase; // Match the uppercase labels in the screenshot
+        text-transform: uppercase;
       }
 
       input[type="text"],
       select,
       textarea {
         width: 100%;
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 14px;
@@ -55,28 +60,19 @@
       .profileSection {
         display: flex;
         align-items: center;
+        flex-wrap: wrap; // Wrap content for smaller screens
         gap: 15px;
         margin-bottom: 15px;
 
-        label {
-          margin: 0;
-          font-size: 14px;
-          color: #666;
-          text-transform: uppercase;
-        }
-
         .profileImages {
           display: flex;
-          gap: 15px;
+          flex-wrap: wrap; // Make images wrap on smaller screens
+          gap: 10px;
 
           .profileImageLabel {
             display: flex;
             align-items: center;
             gap: 5px;
-
-            input[type="radio"] {
-              margin: 0;
-            }
 
             img {
               width: 50px;
@@ -97,14 +93,10 @@
         }
       }
 
-      input[type="radio"],
-      input[type="checkbox"] {
-        margin-right: 5px;
-      }
-
       // Gender and Department sections
       > div {
         display: flex;
+        flex-wrap: wrap; // Wrap content on small screens
         gap: 15px;
         margin-bottom: 15px;
 
@@ -112,13 +104,12 @@
           display: flex;
           align-items: center;
           margin: 0;
-          text-transform: none; // Keep the radio/checkbox labels as-is
         }
       }
 
-      // Start Date section
       .startDate {
         display: flex;
+        flex-wrap: wrap; // Wrap date inputs on smaller screens
         gap: 10px;
 
         select {
@@ -129,46 +120,110 @@
       .buttonContainer {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap; // Wrap buttons on small screens
         margin-top: 20px;
 
-        .cancelButton {
+        .cancelButton,
+        .submitButton,
+        .resetButton {
           padding: 10px 20px;
           border: none;
           border-radius: 4px;
           font-size: 14px;
           cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .cancelButton {
           background-color: #ccc;
           color: #333;
-          transition: background-color 0.3s ease;
 
           &:hover {
-            background-color: #dc3545; // Red on hover to match the screenshot
+            background-color: #dc3545;
             color: #fff;
           }
         }
 
         .rightButtons {
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
 
           .submitButton,
           .resetButton {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
             background-color: #ccc;
             color: #333;
-            transition: background-color 0.3s ease;
 
             &:hover {
-              background-color: #28a745; // Green on hover to match the screenshot
+              background-color: #E9FEA5;
               color: #fff;
             }
           }
         }
       }
     }
+  }
+}
+
+/* 📌 Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .formContainer form {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .profileSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .rightButtons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .submitButton,
+    .resetButton,
+    .cancelButton {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .formContainer form {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profileImages img {
+    width: 40px;
+    height: 40px;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    font-size: 12px;
+    padding: 6px;
   }
 }
