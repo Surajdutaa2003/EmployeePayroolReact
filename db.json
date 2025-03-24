@@ -2,7 +2,7 @@
   "employees": [
     {
       "id": "7811",
-      "name": "de",
+      "name": "dalmacia",
       "profileImage": "/src/assets/girl2.jpeg",
       "gender": "Female",
       "department": [
@@ -11,7 +11,8 @@
       "salary": "80000",
       "note": "deed",
       "redirect": false,
-      "startDate": "2003-03-05"
+      "startDate": "2003-03-05",
+      "notes": ""
     },
     {
       "id": "5647",
@@ -75,16 +76,6 @@
       "startDate": "2011-08-16"
     },
     {
-      "id": "1493",
-      "name": "mayank ",
-      "profileImage": "boy1.jpeg",
-      "gender": "Male",
-      "department": [],
-      "salary": "60000",
-      "notes": "",
-      "redirect": false
-    },
-    {
       "id": "8081",
       "name": "Sam",
       "profileImage": "boy1.jpeg",
@@ -96,6 +87,32 @@
       "notes": "Corythosaurus (do latim \"lagarto de capacete\") foi um gênero de dinossauro herbívoro e bípede que viveu no período Cretáceo. Media em torno de nove metros de comprimento e pesava cerca de quatro toneladas. O Corythosaurus possuía uma crista na cabeça, assim como outros membros da sua família. Viveu na América do Norte e seu habitat natural era as áreas litorâneas, onde havia mais alimento e menos predadores.",
       "redirect": false,
       "startDate": "2015-06-13"
+    },
+    {
+      "id": "0dd4",
+      "name": "sd",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "Sales"
+      ],
+      "salary": "50000",
+      "notes": "",
+      "redirect": false,
+      "startDate": "2014-11-20"
+    },
+    {
+      "id": "65e4",
+      "name": "ad",
+      "profileImage": "boy1.jpeg",
+      "gender": "Female",
+      "department": [
+        "Sales"
+      ],
+      "salary": "50000",
+      "notes": "okk",
+      "redirect": false,
+      "startDate": "2010-11-17"
     }
   ]
 }

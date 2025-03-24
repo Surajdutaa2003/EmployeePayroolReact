@@ -1,13 +1,46 @@
-.header{
-  margin-top: 100px;
+/* Reset global margin and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent body scroll */
 }
+
+/* Style for the fixed header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000; /* Ensure it stays above everything */
+  background-color: #fff; /* Match your design */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  h1 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+/* Main container for the form */
 .container {
-  display: flex
-  ;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: #f5f5f5;
-      padding-top: 6%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  background-color: #f5f5f5;
+  padding-top: 60px; /* Adjust based on header height */
+  overflow-y: auto; /* Enable scrolling for the container */
 
   .formContainer {
     display: flex;
@@ -16,6 +49,8 @@
     justify-content: center;
     flex: 1;
     width: 100%;
+    padding: 20px; /* Add padding to ensure content isn't too tight */
+    box-sizing: border-box;
 
     form {
       background-color: #fff;
@@ -24,6 +59,7 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 600px;
+      box-sizing: border-box;
 
       label {
         display: block;
@@ -60,13 +96,13 @@
       .profileSection {
         display: flex;
         align-items: center;
-        flex-wrap: wrap; // Wrap content for smaller screens
+        flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 15px;
 
         .profileImages {
           display: flex;
-          flex-wrap: wrap; // Make images wrap on smaller screens
+          flex-wrap: wrap;
           gap: 10px;
 
           .profileImageLabel {
@@ -93,10 +129,9 @@
         }
       }
 
-      // Gender and Department sections
       > div {
         display: flex;
-        flex-wrap: wrap; // Wrap content on small screens
+        flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 15px;
 
@@ -109,7 +144,7 @@
 
       .startDate {
         display: flex;
-        flex-wrap: wrap; // Wrap date inputs on smaller screens
+        flex-wrap: wrap;
         gap: 10px;
 
         select {
@@ -120,7 +155,7 @@
       .buttonContainer {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap; // Wrap buttons on small screens
+        flex-wrap: wrap;
         margin-top: 20px;
 
         .cancelButton,
@@ -165,65 +200,89 @@
   }
 }
 
-/* 📌 Responsive Styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .container {
+    padding-top: 50px; /* Adjust for smaller header */
+  }
+
+  .formContainer {
     padding: 15px;
-  }
 
-  .formContainer form {
-    padding: 20px;
-    max-width: 90%;
-  }
-
-  .profileSection {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-
-    .rightButtons {
-      flex-direction: column;
-      width: 100%;
+    form {
+      padding: 20px;
+      max-width: 90%;
     }
 
-    .submitButton,
-    .resetButton,
-    .cancelButton {
-      width: 100%;
-      text-align: center;
+    .profileSection {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .buttonContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      .rightButtons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .submitButton,
+      .resetButton,
+      .cancelButton {
+        width: 100%;
+        text-align: center;
+      }
     }
   }
 }
 
 @media (max-width: 480px) {
   .container {
+    padding-top: 40px; /* Adjust for smaller header */
+  }
+
+  .formContainer {
     padding: 10px;
-  }
 
-  .formContainer form {
-    padding: 15px;
-    max-width: 100%;
-  }
+    form {
+      padding: 15px;
+      max-width: 100%;
+    }
 
-  .buttonContainer {
-    flex-direction: column;
-    align-items: center;
-  }
+    .buttonContainer {
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .profileImages img {
-    width: 40px;
-    height: 40px;
-  }
+    .profileImages img {
+      width: 40px;
+      height: 40px;
+    }
 
-  input[type="text"],
-  select,
-  textarea {
+    input[type="text"],
+    select,
+    textarea {
+      font-size: 12px;
+      padding: 6px;
+    }
+  }
+}
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+// Ensure these are nested properly if needed based on your existing SCSS structure
+.formContainer {
+  .error {
+    color: #ff0000;
     font-size: 12px;
-    padding: 6px;
+    margin-top: 5px;
+    display: block;
   }
 }

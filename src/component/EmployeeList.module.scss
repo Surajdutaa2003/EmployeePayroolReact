@@ -1,36 +1,44 @@
-// h2{
-//   position: relative;
-//     top: 57px;
-// }
-.details{
-  position: relative;
-  top: 59px;
+/* Reset global margin and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent body scroll */
 }
 
+/* Assuming Header is a top navigation bar */
+.header {
+  position: fixed; /* Fix the Header at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000; /* Ensure it stays above everything */
+  background-color: #fff; /* Adjust based on your Header design */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+/* Adjust employeeListContainer to account for Header height */
 .employeeListContainer {
   position: relative;
-  padding: 20px;
   background-color: #f5f5f5;
-  min-height: 100vh;
-  top: 97px;
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Enable scrolling for content */
+  padding: 0;
+  margin-top: 60px; /* Adjust this based on your Header height (e.g., 60px) */
+
   .header {
+    position: sticky; /* Make header sticky */
+    top: 0; /* Stick to top of employeeListContainer */
+    z-index: 1000; /* Below the fixed Header */
+    background-color: #f5f5f5; /* Match container background */
+    padding: 20px; /* Internal padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle separation */
 
-    .titleContainer {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .logo {
-        width: 24px;
-        height: 24px;
-        background-color: #28a745; // Placeholder for logo
-        border-radius: 50%;
-      }
-
+    .details {
+      position: static; /* Reset from original absolute positioning */
       h2 {
         font-size: 24px;
         color: #333;
@@ -47,15 +55,12 @@
         position: relative;
 
         .searchInput {
-          position: relative;
-    padding: 8px 30px 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 200px;
-    color: #333;
-    left: 695px;
-    top: 61px;
+          padding: 8px 30px 8px 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 14px;
+          width: 200px;
+          color: #333;
 
           &::placeholder {
             color: #999;
@@ -71,8 +76,8 @@
 
         .searchIcon {
           position: absolute;
-          right: -689px;
-          top: 232%;
+          right: 10px;
+          top: 50%;
           transform: translateY(-50%);
           color: #666;
           font-size: 16px;
@@ -80,9 +85,7 @@
       }
 
       .addButton {
-        position: relative;
-        display: flex
-    ;
+        display: flex;
         align-items: center;
         gap: 5px;
         padding: 8px 15px;
@@ -92,8 +95,6 @@
         border-radius: 4px;
         font-size: 14px;
         transition: background-color 0.3s ease;
-        top: 62px;
-        left: 699px;
 
         &:hover {
           background-color: #218838;
@@ -104,6 +105,11 @@
         }
       }
     }
+  }
+
+  /* Content below the sticky header */
+  .content {
+    padding: 20px;
   }
 
   .employeeTable {
@@ -144,12 +150,6 @@
           font-size: 14px;
           color: #333;
 
-          &.nameCell {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-          }
-
           .profileImage {
             width: 40px;
             height: 40px;
@@ -164,6 +164,7 @@
             padding: 5px 10px;
             border-radius: 12px;
             font-size: 12px;
+            margin-right: 5px;
           }
 
           .deleteButton,
@@ -193,4 +194,9 @@
       }
     }
   }
+}
+// Add this to your existing EmployeeList.module.scss
+.highlight {
+  background-color: yellow;
+  padding: 0 2px; // Optional: Add some padding for better appearance
 }

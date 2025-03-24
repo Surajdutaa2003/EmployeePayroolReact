@@ -5,7 +5,7 @@ import styles from "./EmployeeForm.module.scss";
 import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
-import Header from "./Header"; // Import the Header component
+import Header from "./Header";
 
 class EmployeeForm extends Component {
   state = {
@@ -18,9 +18,10 @@ class EmployeeForm extends Component {
     startDateDay: "",
     startDateMonth: "",
     startDateYear: "",
-    startDate: "", // Combined start date for submission
+    startDate: "",
     notes: "",
     redirect: false,
+    errors: {}, // Added for validation errors
   };
 
   componentDidMount() {
@@ -52,7 +53,10 @@ class EmployeeForm extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value,
+      errors: { ...this.state.errors, [e.target.name]: "" } // Clear error when field changes
+    });
   };
 
   handleCheckboxChange = (e) => {
@@ -60,7 +64,10 @@ class EmployeeForm extends Component {
     const value = e.target.value;
 
     if (e.target.checked) {
-      this.setState({ department: [...department, value] });
+      this.setState({ 
+        department: [...department, value],
+        errors: { ...this.state.errors, department: "" }
+      });
     } else {
       this.setState({
         department: department.filter((dep) => dep !== value),
@@ -68,19 +75,50 @@ class EmployeeForm extends Component {
     }
   };
 
+  validateForm = () => {
+    const errors = {};
+    const {
+      name,
+      profileImage,
+      gender,
+      department,
+      salary,
+      startDateDay,
+      startDateMonth,
+      startDateYear,
+    } = this.state;
+
+    if (!name.trim()) errors.name = "Employee name is required";
+    if (!profileImage) errors.profileImage = "Please select a profile image";
+    if (!gender) errors.gender = "Please select a gender";
+    if (department.length === 0) errors.department = "Please select at least one department";
+    if (!salary) errors.salary = "Please select a salary";
+    if (!startDateDay) errors.startDateDay = "Please select a start day";
+    if (!startDateMonth) errors.startDateMonth = "Please select a start month";
+    if (!startDateYear) errors.startDateYear = "Please select a start year";
+
+    this.setState({ errors });
+    return Object.keys(errors).length === 0;
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!this.validateForm()) {
+      return;
+    }
+
     const {
       id,
       startDateDay,
       startDateMonth,
       startDateYear,
       startDate,
+      errors,
       ...employeeData
     } = this.state;
     const editEmployeeId = localStorage.getItem("editEmployeeId");
 
-    // Combine the start date fields into a single date string
     if (startDateDay && startDateMonth && startDateYear) {
       const formattedDate = `${startDateYear}-${startDateMonth.padStart(
         2,
@@ -110,12 +148,14 @@ class EmployeeForm extends Component {
       return <Navigate to="/employees" />;
     }
 
+    const { errors } = this.state;
+
     return (
       <div className={styles.container}>
-        <Header /> 
+        <Header />
         <div className={styles.formContainer}>
           <form onSubmit={this.handleSubmit}>
-          <h1>Employee Payroll Form</h1>
+            <h1>Employee Payroll Form</h1>
 
             <label>Name</label>
             <input
@@ -124,8 +164,8 @@ class EmployeeForm extends Component {
               placeholder="Enter employee name"
               value={this.state.name}
               onChange={this.handleChange}
-              required
             />
+            {errors.name && <span className={styles.error}>{errors.name}</span>}
 
             <div className={styles.profileSection}>
               <label>Profile Image</label>
@@ -147,6 +187,9 @@ class EmployeeForm extends Component {
                   </label>
                 ))}
               </div>
+              {errors.profileImage && (
+                <span className={styles.error}>{errors.profileImage}</span>
+              )}
             </div>
 
             <label>Gender</label>
@@ -172,6 +215,7 @@ class EmployeeForm extends Component {
                 Female
               </label>
             </div>
+            {errors.gender && <span className={styles.error}>{errors.gender}</span>}
 
             <label>Department</label>
             <div>
@@ -187,6 +231,9 @@ class EmployeeForm extends Component {
                 </label>
               ))}
             </div>
+            {errors.department && (
+              <span className={styles.error}>{errors.department}</span>
+            )}
 
             <label>Salary</label>
             <select
@@ -198,6 +245,7 @@ class EmployeeForm extends Component {
               <option value="50000">50,000</option>
               <option value="60000">60,000</option>
             </select>
+            {errors.salary && <span className={styles.error}>{errors.salary}</span>}
 
             <label>Start Date</label>
             <div className={styles.startDate}>
@@ -206,7 +254,7 @@ class EmployeeForm extends Component {
                 value={this.state.startDateDay}
                 onChange={this.handleChange}
               >
-                <option>Day</option>
+                <option value="">Day</option>
                 {[...Array(31)].map((_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1}
@@ -218,7 +266,7 @@ class EmployeeForm extends Component {
                 value={this.state.startDateMonth}
                 onChange={this.handleChange}
               >
-                <option>Month</option>
+                <option value="">Month</option>
                 {[
                   "Jan",
                   "Feb",
@@ -243,7 +291,7 @@ class EmployeeForm extends Component {
                 value={this.state.startDateYear}
                 onChange={this.handleChange}
               >
-                <option>Year</option>
+                <option value="">Year</option>
                 {[...Array(50)].map((_, i) => (
                   <option key={i} value={2025 - i}>
                     {2025 - i}
@@ -251,6 +299,11 @@ class EmployeeForm extends Component {
                 ))}
               </select>
             </div>
+            {(errors.startDateDay || errors.startDateMonth || errors.startDateYear) && (
+              <span className={styles.error}>
+                {errors.startDateDay || errors.startDateMonth || errors.startDateYear}
+              </span>
+            )}
 
             <label>Notes</label>
             <textarea
