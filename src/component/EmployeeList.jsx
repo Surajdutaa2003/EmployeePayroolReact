@@ -41,38 +41,35 @@ class EmployeeList extends Component {
     this.setState({ searchQuery: e.target.value });
   };
 
-  // Function to format the date as "DD MMM YYYY"
   formatDate = (dateString) => {
-    if (!dateString) return "N/A"; // Handle cases where date is not provided
+    if (!dateString) return "N/A"; 
     const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Invalid Date"; // Handle invalid dates
+    if (isNaN(date.getTime())) return "Invalid Date"; 
     return date.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
-    }); // Formats as "29 Oct 2019"
+    }); 
   };
 
-  // Helper function to highlight matching text
+
   highlightText = (text, query) => {
-    if (!query || !text) return text; // If no query or text, return as is
+    if (!query || !text) return text; 
 
     const lowerText = text.toLowerCase();
     const lowerQuery = query.toLowerCase();
 
-    // If there's no match, return the original text
+
     if (!lowerText.includes(lowerQuery)) return text;
 
-    // Find the start index of the match
     const startIndex = lowerText.indexOf(lowerQuery);
     const endIndex = startIndex + query.length;
 
-    // Split the text into before, match, and after parts
     const before = text.substring(0, startIndex);
     const match = text.substring(startIndex, endIndex);
     const after = text.substring(endIndex);
 
-    // Return the text with the matching part highlighted
+    
     return (
       <>
         {before}
@@ -85,35 +82,35 @@ class EmployeeList extends Component {
   render() {
     const { employees, searchQuery } = this.state;
 
-    // Filter employees based on search query across multiple fields
+  
     const filteredEmployees = employees.filter((employee) => {
       const query = searchQuery.toLowerCase();
 
-      // Check name
+      
       const matchesName = employee.name.toLowerCase().includes(query);
 
-      // Check gender
+     
       const matchesGender = employee.gender.toLowerCase().includes(query);
 
-      // Check department (array of departments)
+      
       const matchesDepartment = Array.isArray(employee.department)
         ? employee.department.some((dept) =>
             dept.toLowerCase().includes(query)
           )
         : employee.department?.toLowerCase().includes(query) || false;
 
-      // Check salary (convert to string for searching)
+    
       const matchesSalary = employee.salary.toString().includes(query);
 
-      // Check start date (format the date and search)
+   
       const formattedDate = this.formatDate(employee.startDate).toLowerCase();
       const matchesFormattedDate = formattedDate.includes(query);
 
-      // Check raw start date (e.g., "2023-10-29")
+     
       const rawDate = employee.startDate?.toLowerCase() || "";
       const matchesRawDate = rawDate.includes(query);
 
-      // Return true if any field matches the query
+     
       return (
         matchesName ||
         matchesGender ||
@@ -153,7 +150,7 @@ class EmployeeList extends Component {
         <table className={styles.employeeTable}>
           <thead>
             <tr>
-              <th></th> {/* Empty column for profile image */}
+              <th></th> 
               <th>Name</th>
               <th>Gender</th>
               <th>Department</th>

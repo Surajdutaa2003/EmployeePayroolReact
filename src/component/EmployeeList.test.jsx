@@ -52,7 +52,7 @@ describe("EmployeeList Component", () => {
 
     const editButton = screen.getByRole("button", { name: /Edit/i });
     fireEvent.click(editButton);
-    expect(localStorage.getItem("editEmployeeId")).toBe("1"); // Updated to match handleEdit
+    expect(localStorage.getItem("editEmployeeId")).toBe("1"); 
   });
 
   test("Delete button removes employee from UI", async () => {
@@ -66,9 +66,9 @@ describe("EmployeeList Component", () => {
       expect(screen.getByText("Rajesh")).toBeInTheDocument();
     });
 
-    // Mock the delete request
+   
     axios.delete.mockResolvedValue({ status: 200 });
-    // Mock the subsequent fetchEmployees call to return an empty list
+    
     axios.get.mockResolvedValueOnce({ data: [] });
 
     const deleteButton = screen.getByRole("button", { name: /Delete/i });

@@ -1,20 +1,20 @@
-// Import Google Fonts for a modern typography
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
-// Global styles for the login page
+
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #6e48aa, #9d50bb); // Gradient background
+  background: linear-gradient(135deg, #6e48aa, #9d50bb); 
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
 
 .login-box {
-  background: rgba(255, 255, 255, 0.1); // Glassmorphism effect
-  backdrop-filter: blur(10px); // Blur for glass effect
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
   border-radius: 15px;
   padding: 40px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -22,7 +22,7 @@
   text-align: center;
   max-width: 400px;
   width: 100%;
-  animation: fadeIn 0.5s ease-in-out; // Fade-in animation for the card
+  animation: fadeIn 0.5s ease-in-out; 
 
   .login-title {
     font-size: 2rem;
@@ -38,7 +38,6 @@
     margin-bottom: 30px;
   }
 
-  // Spinner animation during loading
   .spinner {
     width: 40px;
     height: 40px;
@@ -49,7 +48,7 @@
     margin: 0 auto;
   }
 
-  // Welcome section after login
+  
   .welcome-section {
     animation: fadeIn 0.5s ease-in-out;
 
@@ -80,7 +79,6 @@
   }
 }
 
-// Style the Google Login button
 .google-login-button {
   display: inline-block;
   background: #fff;
@@ -94,7 +92,6 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   }
 
-  // Customize the Google button's inner elements (if needed)
   > div {
     background: transparent !important;
     border: none !important;
@@ -107,7 +104,7 @@
   }
 }
 
-// Keyframes for animations
+
 @keyframes fadeIn {
   from {
     opacity: 0;

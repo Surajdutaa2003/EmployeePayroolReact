@@ -5,7 +5,7 @@ import EmployeeForm from "./component/EmployeeForm";
 import Login from "./component/Login";
 import "./styles/global.scss";
 
-// A wrapper component to pass navigate to the Login class component
+
 const LoginWithNavigate = (props) => {
   const navigate = useNavigate();
   return <Login {...props} navigate={navigate} />;
@@ -17,7 +17,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <Routes>
-            {/* Redirect from "/" to "/login" */}
+           
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<LoginWithNavigate />} />
             <Route path="/employees" element={<EmployeeList />} />

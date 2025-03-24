@@ -1,44 +1,43 @@
-/* Reset global margin and padding */
+
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent body scroll */
+  overflow: hidden;
 }
 
-/* Assuming Header is a top navigation bar */
+
 .header {
-  position: fixed; /* Fix the Header at the top */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2000; /* Ensure it stays above everything */
-  background-color: #fff; /* Adjust based on your Header design */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  z-index: 2000; 
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Adjust employeeListContainer to account for Header height */
 .employeeListContainer {
   position: relative;
   background-color: #f5f5f5;
-  height: 100vh; /* Full viewport height */
-  overflow-y: auto; /* Enable scrolling for content */
+  height: 100vh; 
+  overflow-y: auto; 
   padding: 0;
-  margin-top: 60px; /* Adjust this based on your Header height (e.g., 60px) */
+  margin-top: 60px; 
 
   .header {
-    position: sticky; /* Make header sticky */
-    top: 0; /* Stick to top of employeeListContainer */
-    z-index: 1000; /* Below the fixed Header */
-    background-color: #f5f5f5; /* Match container background */
-    padding: 20px; /* Internal padding */
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    background-color: #f5f5f5; 
+    padding: 20px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle separation */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 
     .details {
-      position: static; /* Reset from original absolute positioning */
+      position: static;
       h2 {
         font-size: 24px;
         color: #333;
@@ -107,7 +106,7 @@ body, html {
     }
   }
 
-  /* Content below the sticky header */
+  
   .content {
     padding: 20px;
   }
@@ -195,8 +194,8 @@ body, html {
     }
   }
 }
-// Add this to your existing EmployeeList.module.scss
+
 .highlight {
   background-color: yellow;
-  padding: 0 2px; // Optional: Add some padding for better appearance
+  padding: 0 2px; 
 }

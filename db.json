@@ -113,6 +113,23 @@
       "notes": "okk",
       "redirect": false,
       "startDate": "2010-11-17"
+    },
+    {
+      "id": "01c0",
+      "name": "Suraj D",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales",
+        "Finance",
+        "Engineer",
+        "Others"
+      ],
+      "salary": "60000",
+      "notes": "g",
+      "redirect": false,
+      "startDate": "2010-12-14"
     }
   ]
 }

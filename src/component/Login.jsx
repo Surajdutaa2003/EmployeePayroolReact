@@ -11,7 +11,7 @@ class Login extends Component {
     super(props);
     this.state = {
       user: null,
-      isLoading: false, // Add loading state for animation
+      isLoading: false, 
     };
   }
 
@@ -21,10 +21,10 @@ class Login extends Component {
     console.log("Login Success:", decodedUser);
     this.setState({ user: decodedUser, isLoading: true });
 
-    // Store user in local storage
+    
     localStorage.setItem("user", JSON.stringify(decodedUser));
 
-    // Navigate to EmployeeList after a delay
+ 
     setTimeout(() => {
       this.props.navigate("/employees");
     }, 1000);
@@ -53,7 +53,7 @@ class Login extends Component {
             </Typography>
 
             {this.state.isLoading ? (
-              <div className="spinner"></div> // Show spinner during loading
+              <div className="spinner"></div> 
             ) : this.state.user ? (
               <div className="welcome-section">
                 <Typography variant="h6" className="welcome-text">
