@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { Button, Typography, Container, Box } from "@mui/material";
-import "./Login.scss";
+import "../styles/Login.scss"; // ✅ Sahi tarika
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 

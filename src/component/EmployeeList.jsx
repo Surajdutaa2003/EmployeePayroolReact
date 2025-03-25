@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styles from "./EmployeeList.module.scss";
+import styles from "../styles/EmployeeList.module.scss";
 import { MdSearch, MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import Header from "./Header";
 
@@ -15,26 +15,26 @@ class EmployeeList extends Component {
     this.fetchEmployees();
   }
 
-  fetchEmployees = () => {
-    axios
-      .get("http://localhost:3000/employees")
-      .then((response) => {
-        this.setState({ employees: response.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching employees:", error);
-      });
+  fetchEmployees = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/employees");
+      this.setState({ employees: response.data });
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
   };
 
   handleEdit = (id) => {
     localStorage.setItem("editEmployeeId", id);
   };
 
-  handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:3000/employees/${id}`)
-      .then(() => this.fetchEmployees())
-      .catch((error) => console.error("Error deleting employee:", error));
+  handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/employees/${id}`);
+      this.fetchEmployees(); // Refresh list after deletion
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+    }
   };
 
   handleSearch = (e) => {
@@ -52,13 +52,11 @@ class EmployeeList extends Component {
     }); 
   };
 
-
   highlightText = (text, query) => {
     if (!query || !text) return text; 
 
     const lowerText = text.toLowerCase();
     const lowerQuery = query.toLowerCase();
-
 
     if (!lowerText.includes(lowerQuery)) return text;
 
@@ -69,7 +67,6 @@ class EmployeeList extends Component {
     const match = text.substring(startIndex, endIndex);
     const after = text.substring(endIndex);
 
-    
     return (
       <>
         {before}
@@ -82,35 +79,22 @@ class EmployeeList extends Component {
   render() {
     const { employees, searchQuery } = this.state;
 
-  
     const filteredEmployees = employees.filter((employee) => {
       const query = searchQuery.toLowerCase();
 
-      
       const matchesName = employee.name.toLowerCase().includes(query);
-
-     
       const matchesGender = employee.gender.toLowerCase().includes(query);
-
-      
       const matchesDepartment = Array.isArray(employee.department)
-        ? employee.department.some((dept) =>
-            dept.toLowerCase().includes(query)
-          )
+        ? employee.department.some((dept) => dept.toLowerCase().includes(query))
         : employee.department?.toLowerCase().includes(query) || false;
-
-    
       const matchesSalary = employee.salary.toString().includes(query);
 
-   
       const formattedDate = this.formatDate(employee.startDate).toLowerCase();
       const matchesFormattedDate = formattedDate.includes(query);
 
-     
       const rawDate = employee.startDate?.toLowerCase() || "";
       const matchesRawDate = rawDate.includes(query);
 
-     
       return (
         matchesName ||
         matchesGender ||
@@ -234,3 +218,4 @@ class EmployeeList extends Component {
 }
 
 export default EmployeeList;
+// ss

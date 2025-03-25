@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-import styles from "./EmployeeForm.module.scss";
+import styles from "../styles/EmployeeForm.module.scss";
+
 import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
@@ -24,38 +25,40 @@ class EmployeeForm extends Component {
     errors: {}, // Added for validation errors
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const editEmployeeId = localStorage.getItem("editEmployeeId");
 
     if (editEmployeeId) {
-      axios
-        .get(`http://localhost:3000/employees/${editEmployeeId}`)
-        .then((response) => {
-          const { startDate } = response.data;
-          let startDateDay = "",
-            startDateMonth = "",
-            startDateYear = "";
-          if (startDate) {
-            const date = new Date(startDate);
-            startDateDay = date.getDate().toString();
-            startDateMonth = (date.getMonth() + 1).toString();
-            startDateYear = date.getFullYear().toString();
-          }
-          this.setState({
-            ...response.data,
-            startDateDay,
-            startDateMonth,
-            startDateYear,
-          });
-        })
-        .catch((error) => console.error("Error fetching employee:", error));
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/employees/${editEmployeeId}`
+        );
+        const { startDate } = response.data;
+        let startDateDay = "",
+          startDateMonth = "",
+          startDateYear = "";
+        if (startDate) {
+          const date = new Date(startDate);
+          startDateDay = date.getDate().toString();
+          startDateMonth = (date.getMonth() + 1).toString();
+          startDateYear = date.getFullYear().toString();
+        }
+        this.setState({
+          ...response.data,
+          startDateDay,
+          startDateMonth,
+          startDateYear,
+        });
+      } catch (error) {
+        console.error("Error fetching employee:", error);
+      }
     }
   }
 
   handleChange = (e) => {
-    this.setState({ 
+    this.setState({
       [e.target.name]: e.target.value,
-      errors: { ...this.state.errors, [e.target.name]: "" } // Clear error when field changes
+      errors: { ...this.state.errors, [e.target.name]: "" }, // Clear error when field changes
     });
   };
 
@@ -64,9 +67,9 @@ class EmployeeForm extends Component {
     const value = e.target.value;
 
     if (e.target.checked) {
-      this.setState({ 
+      this.setState({
         department: [...department, value],
-        errors: { ...this.state.errors, department: "" }
+        errors: { ...this.state.errors, department: "" },
       });
     } else {
       this.setState({
@@ -91,7 +94,8 @@ class EmployeeForm extends Component {
     if (!name.trim()) errors.name = "Employee name is required";
     if (!profileImage) errors.profileImage = "Please select a profile image";
     if (!gender) errors.gender = "Please select a gender";
-    if (department.length === 0) errors.department = "Please select at least one department";
+    if (department.length === 0)
+      errors.department = "Please select at least one department";
     if (!salary) errors.salary = "Please select a salary";
     if (!startDateDay) errors.startDateDay = "Please select a start day";
     if (!startDateMonth) errors.startDateMonth = "Please select a start month";
@@ -101,9 +105,9 @@ class EmployeeForm extends Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!this.validateForm()) {
       return;
     }
@@ -127,19 +131,22 @@ class EmployeeForm extends Component {
       employeeData.startDate = formattedDate;
     }
 
-    if (editEmployeeId) {
-      axios
-        .patch(`http://localhost:3000/employees/${editEmployeeId}`, employeeData)
-        .then(() => {
-          localStorage.removeItem("editEmployeeId");
-          this.setState({ redirect: true });
-        })
-        .catch((error) => console.error("Error updating employee:", error));
-    } else {
-      axios
-        .post("http://localhost:3000/employees", employeeData)
-        .then(() => this.setState({ redirect: true }))
-        .catch((error) => console.error("Error adding employee:", error));
+    try {
+      if (editEmployeeId) {
+        await axios.patch(
+          `http://localhost:3000/employees/${editEmployeeId}`,
+          employeeData
+        );
+        localStorage.removeItem("editEmployeeId");
+      } else {
+        await axios.post("http://localhost:3000/employees", employeeData);
+      }
+      this.setState({ redirect: true });
+    } catch (error) {
+      console.error(
+        editEmployeeId ? "Error updating employee:" : "Error adding employee:",
+        error
+      );
     }
   };
 
@@ -215,7 +222,9 @@ class EmployeeForm extends Component {
                 Female
               </label>
             </div>
-            {errors.gender && <span className={styles.error}>{errors.gender}</span>}
+            {errors.gender && (
+              <span className={styles.error}>{errors.gender}</span>
+            )}
 
             <label>Department</label>
             <div>
@@ -245,7 +254,9 @@ class EmployeeForm extends Component {
               <option value="50000">50,000</option>
               <option value="60000">60,000</option>
             </select>
-            {errors.salary && <span className={styles.error}>{errors.salary}</span>}
+            {errors.salary && (
+              <span className={styles.error}>{errors.salary}</span>
+            )}
 
             <label>Start Date</label>
             <div className={styles.startDate}>
@@ -299,9 +310,13 @@ class EmployeeForm extends Component {
                 ))}
               </select>
             </div>
-            {(errors.startDateDay || errors.startDateMonth || errors.startDateYear) && (
+            {(errors.startDateDay ||
+              errors.startDateMonth ||
+              errors.startDateYear) && (
               <span className={styles.error}>
-                {errors.startDateDay || errors.startDateMonth || errors.startDateYear}
+                {errors.startDateDay ||
+                  errors.startDateMonth ||
+                  errors.startDateYear}
               </span>
             )}
 
@@ -338,3 +353,4 @@ class EmployeeForm extends Component {
 }
 
 export default EmployeeForm;
+// ww
