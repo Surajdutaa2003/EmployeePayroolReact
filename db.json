@@ -2,13 +2,13 @@
   "employees": [
     {
       "id": "7811",
-      "name": "dalmacia ",
+      "name": "dalm",
       "profileImage": "/src/assets/girl2.jpeg",
       "gender": "Female",
       "department": [
         "Sales"
       ],
-      "salary": "80000",
+      "salary": "60000",
       "note": "deed",
       "redirect": false,
       "startDate": "2003-03-05",
@@ -288,34 +288,6 @@
       "startDate": "2009-10-16"
     },
     {
-      "id": "6fa6",
-      "name": "okm",
-      "profileImage": "boy2.jpeg",
-      "gender": "Male",
-      "department": [
-        "Engineer",
-        "HR"
-      ],
-      "salary": "50000",
-      "notes": "nm.",
-      "redirect": false,
-      "startDate": "2022-03-04"
-    },
-    {
-      "id": "f35c",
-      "name": "okm",
-      "profileImage": "boy2.jpeg",
-      "gender": "Male",
-      "department": [
-        "Engineer",
-        "HR"
-      ],
-      "salary": "50000",
-      "notes": "nm.",
-      "redirect": false,
-      "startDate": "2022-03-04"
-    },
-    {
       "id": "fc8a",
       "name": "hiiiiheloo",
       "profileImage": "girl1.jpeg",
@@ -327,6 +299,202 @@
       "notes": "nm,",
       "redirect": false,
       "startDate": "2022-05-04"
+    },
+    {
+      "id": "7518",
+      "name": "Rahul",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "notes": "gjhvjh",
+      "redirect": false,
+      "startDate": "2012-10-12"
+    },
+    {
+      "id": "24f5",
+      "name": "rakshit",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "Engineer"
+      ],
+      "salary": "60000",
+      "notes": "sda",
+      "redirect": false,
+      "startDate": "2009-10-18"
+    },
+    {
+      "id": "c6bd",
+      "name": "Raghav",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "guguy",
+      "redirect": false,
+      "startDate": "2020-05-04"
+    },
+    {
+      "id": "d444",
+      "name": "sparsh",
+      "profileImage": "girl1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Others"
+      ],
+      "salary": "50000",
+      "notes": "jadslk",
+      "redirect": false,
+      "startDate": "2021-06-03"
+    },
+    {
+      "id": "b3a7",
+      "name": "amandeep",
+      "profileImage": "girl1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "vghv h",
+      "redirect": false,
+      "startDate": "2022-03-04"
+    },
+    {
+      "id": "4935",
+      "name": "rajesh",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "notes": "cvhg",
+      "redirect": false,
+      "startDate": "2014-09-12"
+    },
+    {
+      "id": "f92c",
+      "name": "kalam",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "yoo",
+      "redirect": false,
+      "startDate": "2010-11-14"
+    },
+    {
+      "id": "e4f7",
+      "name": "opp",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "kdel",
+      "redirect": false,
+      "startDate": "2012-08-14"
+    },
+    {
+      "id": "a368",
+      "name": "klm",
+      "profileImage": "girl1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "jsn",
+      "redirect": false,
+      "startDate": "2012-09-15"
+    },
+    {
+      "id": "bd07",
+      "name": "uu",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "skad",
+      "redirect": false,
+      "startDate": "2010-10-15"
+    },
+    {
+      "id": "154b",
+      "name": "qqq",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "m,",
+      "redirect": false,
+      "startDate": "2010-10-16"
+    },
+    {
+      "id": "ee12",
+      "name": "j",
+      "profileImage": "girl1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "notes": "jk",
+      "redirect": false,
+      "startDate": "2021-03-07"
+    },
+    {
+      "id": "0034",
+      "name": "mmm",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "startDate": "2022-05-08",
+      "notes": "njk",
+      "redirect": false
+    },
+    {
+      "id": "70bf",
+      "name": "ppp",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "startDate": "2011-11-12",
+      "notes": "de",
+      "redirect": false
+    },
+    {
+      "id": "257c",
+      "name": "kkm",
+      "profileImage": "boy2.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "startDate": "2010-07-16",
+      "notes": "lmn",
+      "redirect": false
     }
   ]
 }

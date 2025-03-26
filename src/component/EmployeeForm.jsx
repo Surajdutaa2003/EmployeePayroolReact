@@ -61,7 +61,14 @@ class EmployeeForm extends Component {
       errors: { ...this.state.errors, [e.target.name]: "" }, // Clear error when field changes
     });
   };
-
+ 
+  handleReset = () => {
+    this.setState({
+      name: "",
+      salary: "",
+     
+    });
+  };
   handleCheckboxChange = (e) => {
     const { department } = this.state;
     const value = e.target.value;
@@ -244,16 +251,18 @@ class EmployeeForm extends Component {
               <span className={styles.error}>{errors.department}</span>
             )}
 
-            <label>Salary</label>
-            <select
-              name="salary"
-              value={this.state.salary}
-              onChange={this.handleChange}
-            >
-              <option value="">Select Salary</option>
-              <option value="50000">50,000</option>
-              <option value="60000">60,000</option>
-            </select>
+<label htmlFor="salary">Salary</label>
+<select
+  id="salary"
+  name="salary"
+  value={this.state.salary}
+  onChange={this.handleChange}
+>
+  <option value="">Select Salary</option>
+  <option value="50000">50,000</option>
+  <option value="60000">60,000</option>
+</select>
+
             {errors.salary && (
               <span className={styles.error}>{errors.salary}</span>
             )}
@@ -340,9 +349,13 @@ class EmployeeForm extends Component {
                 <button type="submit" className={styles.submitButton}>
                   {this.state.id ? "Update" : "Submit"}
                 </button>
-                <button type="reset" className={styles.resetButton}>
-                  Reset
-                </button>
+                <button
+        type="button"
+        className={styles.resetButton}
+        onClick={this.handleReset} // Add event handler here
+      >
+        Reset
+      </button>
               </div>
             </div>
           </form>
