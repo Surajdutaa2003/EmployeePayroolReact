@@ -1,37 +1,6 @@
 {
   "employees": [
     {
-      "id": "7811",
-      "name": "dalm",
-      "profileImage": "/src/assets/girl2.jpeg",
-      "gender": "Female",
-      "department": [
-        "Sales"
-      ],
-      "salary": "60000",
-      "note": "deed",
-      "redirect": false,
-      "startDate": "2003-03-05",
-      "notes": ""
-    },
-    {
-      "id": "5647",
-      "name": "dwa",
-      "profileImage": "/src/assets/boy2.jpeg",
-      "gender": "Female",
-      "department": [
-        "Engineer",
-        "Finance",
-        "Sales",
-        "HR"
-      ],
-      "salary": "60000",
-      "note": "de",
-      "redirect": false,
-      "startDate": "2024-06-07",
-      "notes": ""
-    },
-    {
       "id": "b5ff",
       "name": "harsh raj",
       "profileImage": "/src/assets/boy1.jpeg",
@@ -406,32 +375,6 @@
       "startDate": "2012-08-14"
     },
     {
-      "id": "a368",
-      "name": "klm",
-      "profileImage": "girl1.jpeg",
-      "gender": "Male",
-      "department": [
-        "HR"
-      ],
-      "salary": "60000",
-      "notes": "jsn",
-      "redirect": false,
-      "startDate": "2012-09-15"
-    },
-    {
-      "id": "bd07",
-      "name": "uu",
-      "profileImage": "boy1.jpeg",
-      "gender": "Male",
-      "department": [
-        "HR"
-      ],
-      "salary": "60000",
-      "notes": "skad",
-      "redirect": false,
-      "startDate": "2010-10-15"
-    },
-    {
       "id": "154b",
       "name": "qqq",
       "profileImage": "boy1.jpeg",
@@ -484,17 +427,136 @@
       "redirect": false
     },
     {
-      "id": "257c",
-      "name": "kkm",
+      "id": "3145",
+      "name": "Suraj",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "hi",
+      "redirect": false,
+      "startDate": "2003-04-17"
+    },
+    {
+      "id": "b048",
+      "name": "Suraj",
       "profileImage": "boy2.jpeg",
       "gender": "Male",
       "department": [
         "HR"
       ],
+      "salary": "60000",
+      "notes": "jlad",
+      "redirect": false,
+      "startDate": "2003-04-17"
+    },
+    {
+      "id": "b0b7",
+      "name": "sd",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "jk",
+      "redirect": false,
+      "startDate": "2020-03-03"
+    },
+    {
+      "id": "8608",
+      "name": "raga",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "jk",
+      "redirect": false,
+      "startDate": "2022-07-06"
+    },
+    {
+      "id": "37bc",
+      "name": "Ashutosh",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "Sales"
+      ],
       "salary": "50000",
-      "startDate": "2010-07-16",
-      "notes": "lmn",
-      "redirect": false
+      "notes": "dsbk",
+      "redirect": false,
+      "startDate": "2009-10-17"
+    },
+    {
+      "id": "9432",
+      "name": "sidhu",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "50000",
+      "notes": "njj",
+      "redirect": false,
+      "startDate": "2011-10-18"
+    },
+    {
+      "id": "822f",
+      "name": "harry",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "hkj",
+      "redirect": false,
+      "startDate": "2008-10-28"
+    },
+    {
+      "id": "a9c8",
+      "name": "jdbc",
+      "profileImage": "boy1.jpeg",
+      "gender": "Female",
+      "department": [
+        "Sales",
+        "Finance"
+      ],
+      "salary": "60000",
+      "notes": "jnkjn",
+      "redirect": false,
+      "startDate": "2013-10-14"
+    },
+    {
+      "id": "5f01",
+      "name": "kjh",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "Sales",
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "dskn",
+      "redirect": false,
+      "startDate": "2010-10-28"
+    },
+    {
+      "id": "9370",
+      "name": "sam Altman",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "HR"
+      ],
+      "salary": "60000",
+      "notes": "sjn",
+      "redirect": false,
+      "startDate": "2009-10-17"
     }
   ]
 }

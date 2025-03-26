@@ -1,20 +1,18 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-
 
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #6e48aa, #9d50bb); 
+  background: linear-gradient(135deg, #28a745, #218838); // ✅ Green payroll theme
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
 
 .login-box {
-  background: rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(10px); 
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 40px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -22,7 +20,7 @@
   text-align: center;
   max-width: 400px;
   width: 100%;
-  animation: fadeIn 0.5s ease-in-out; 
+  animation: fadeIn 0.5s ease-in-out;
 
   .login-title {
     font-size: 2rem;
@@ -38,6 +36,7 @@
     margin-bottom: 30px;
   }
 
+  /* ✅ Loading Spinner */
   .spinner {
     width: 40px;
     height: 40px;
@@ -48,7 +47,7 @@
     margin: 0 auto;
   }
 
-  
+  /* ✅ Welcome Section */
   .welcome-section {
     animation: fadeIn 0.5s ease-in-out;
 
@@ -70,7 +69,7 @@
 
       &:hover {
         background: #fff;
-        color: #6e48aa;
+        color: #28a745;
         border-color: #fff;
         transform: translateY(-2px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -79,6 +78,7 @@
   }
 }
 
+/* ✅ Styled Google Login Button */
 .google-login-button {
   display: inline-block;
   background: #fff;
@@ -100,11 +100,11 @@
   span {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500 !important;
-    color: #6e48aa !important;
+    color: #28a745 !important; // ✅ Payroll theme green
   }
 }
 
-
+/* ✅ Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

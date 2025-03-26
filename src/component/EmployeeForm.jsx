@@ -6,6 +6,7 @@ import styles from "../styles/EmployeeForm.module.scss";
 import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
+// import boy3 from "../assets/boy3.jpeg"; // Added fourth image
 import Header from "./Header";
 
 class EmployeeForm extends Component {
@@ -61,14 +62,24 @@ class EmployeeForm extends Component {
       errors: { ...this.state.errors, [e.target.name]: "" }, // Clear error when field changes
     });
   };
- 
+
   handleReset = () => {
     this.setState({
+      id: null,
       name: "",
+      profileImage: "",
+      gender: "",
+      department: [],
       salary: "",
-     
+      startDateDay: "",
+      startDateMonth: "",
+      startDateYear: "",
+      startDate: "",
+      notes: "",
+      errors: {},
     });
   };
+
   handleCheckboxChange = (e) => {
     const { department } = this.state;
     const value = e.target.value;
@@ -171,171 +182,200 @@ class EmployeeForm extends Component {
           <form onSubmit={this.handleSubmit}>
             <h1>Employee Payroll Form</h1>
 
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter employee name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            {errors.name && <span className={styles.error}>{errors.name}</span>}
+            <div className={styles.formGroup}>
+              <label>Name</label>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter employee name"
+                  value={this.state.name||""}
+                  onChange={this.handleChange}
+                />
+                {errors.name && <span className={styles.error}>{errors.name}</span>}
+              </div>
+            </div>
 
-            <div className={styles.profileSection}>
-              <label>Profile Image</label>
-              <div className={styles.profileImages}>
-                {[
-                  { src: boy1, name: "boy1.jpeg" },
-                  { src: boy2, name: "boy2.jpeg" },
-                  { src: girl1, name: "girl1.jpeg" },
-                ].map((img, index) => (
-                  <label key={index} className={styles.profileImageLabel}>
+            <div className={styles.formGroup}>
+              <label className={styles.pf}>Profile Image</label>
+              <div className={styles.inputWrapper}>
+                <div className={styles.profileImages}>
+                  {[
+                    { src: boy1, name: "boy1.jpeg" },
+                    { src: boy2, name: "boy2.jpeg" },
+                    { src: girl1, name: "girl1.jpeg" }
+                    // { src: boy3, name: "boy3.jpeg" },
+                  ].map((img) => (
+                    <label key={img.name} className={styles.profileImageLabel}>
+                      <input
+                        type="radio"
+                        name="profileImage"
+                        value={img.name}
+                        checked={this.state.profileImage === img.name}
+                        onChange={this.handleChange}
+                        data-testid="profile-image-option" // ✅ Add this
+
+                      />
+                      <img src={img.src} alt={`Profile ${img.name}`} />
+                    </label>
+                  ))}
+                </div>
+                {errors.profileImage && (
+                  <span className={styles.error}>{errors.profileImage}</span>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label>Gender</label>
+              <div className={styles.inputWrapper}>
+                <div className={styles.radioGroup}>
+                  <label>
                     <input
                       type="radio"
-                      name="profileImage"
-                      value={img.name}
-                      checked={this.state.profileImage === img.name}
+                      name="gender"
+                      value="Male"
+                      checked={this.state.gender === "Male"}
                       onChange={this.handleChange}
                     />
-                    <img src={img.src} alt={`Profile ${index + 1}`} />
+                    Male
                   </label>
-                ))}
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Female"
+                      checked={this.state.gender === "Female"}
+                      onChange={this.handleChange}
+                    />
+                    Female
+                  </label>
+                </div>
+                {errors.gender && (
+                  <span className={styles.error}>{errors.gender}</span>
+                )}
               </div>
-              {errors.profileImage && (
-                <span className={styles.error}>{errors.profileImage}</span>
-              )}
             </div>
 
-            <label>Gender</label>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  checked={this.state.gender === "Male"}
+            <div className={styles.formGroup}>
+              <label>Department</label>
+              <div className={styles.inputWrapper}>
+                <div className={styles.checkboxGroup}>
+                  {["HR", "Sales", "Finance", "Engineer", "Others"].map((dept) => (
+                    <label key={dept}>
+                      <input
+                        type="checkbox"
+                        value={dept}
+                        checked={this.state.department.includes(dept)}
+                        onChange={this.handleCheckboxChange}
+                      />
+                      {dept}
+                    </label>
+                  ))}
+                </div>
+                {errors.department && (
+                  <span className={styles.error}>{errors.department}</span>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+            <label htmlFor="salary">Salary</label> 
+
+              <div className={styles.inputWrapper}>
+                <select
+                  id="salary"
+                  name="salary"
+                  value={this.state.salary}
                   onChange={this.handleChange}
-                />{" "}
-                Male
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  checked={this.state.gender === "Female"}
-                  onChange={this.handleChange}
-                />{" "}
-                Female
-              </label>
+                >
+                  <option value="">Select Salary</option>
+                  <option value="50000">50,000</option>
+                  <option value="60000">60,000</option>
+                </select>
+                {errors.salary && (
+                  <span className={styles.error}>{errors.salary}</span>
+                )}
+              </div>
             </div>
-            {errors.gender && (
-              <span className={styles.error}>{errors.gender}</span>
-            )}
 
-            <label>Department</label>
-            <div>
-              {["HR", "Sales", "Finance", "Engineer", "Others"].map((dept) => (
-                <label key={dept}>
-                  <input
-                    type="checkbox"
-                    value={dept}
-                    checked={this.state.department.includes(dept)}
-                    onChange={this.handleCheckboxChange}
-                  />{" "}
-                  {dept}
-                </label>
-              ))}
-            </div>
-            {errors.department && (
-              <span className={styles.error}>{errors.department}</span>
-            )}
-
-<label htmlFor="salary">Salary</label>
-<select
-  id="salary"
-  name="salary"
-  value={this.state.salary}
-  onChange={this.handleChange}
->
-  <option value="">Select Salary</option>
-  <option value="50000">50,000</option>
-  <option value="60000">60,000</option>
-</select>
-
-            {errors.salary && (
-              <span className={styles.error}>{errors.salary}</span>
-            )}
-
-            <label>Start Date</label>
-            <div className={styles.startDate}>
-              <select
-                name="startDateDay"
-                value={this.state.startDateDay}
-                onChange={this.handleChange}
-              >
-                <option value="">Day</option>
-                {[...Array(31)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="startDateMonth"
-                value={this.state.startDateMonth}
-                onChange={this.handleChange}
-              >
-                <option value="">Month</option>
-                {[
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "Apr",
-                  "May",
-                  "Jun",
-                  "Jul",
-                  "Aug",
-                  "Sep",
-                  "Oct",
-                  "Nov",
-                  "Dec",
-                ].map((month, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="startDateYear"
-                value={this.state.startDateYear}
-                onChange={this.handleChange}
-              >
-                <option value="">Year</option>
-                {[...Array(50)].map((_, i) => (
-                  <option key={i} value={2025 - i}>
-                    {2025 - i}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {(errors.startDateDay ||
-              errors.startDateMonth ||
-              errors.startDateYear) && (
-              <span className={styles.error}>
-                {errors.startDateDay ||
+            <div className={styles.formGroup}>
+              <label>Start Date</label>
+              <div className={styles.inputWrapper}>
+                <div className={styles.startDate}>
+                  <select
+                    name="startDateDay"
+                    value={this.state.startDateDay}
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Day</option>
+                    {[...Array(31)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="startDateMonth"
+                    value={this.state.startDateMonth}
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Month</option>
+                    {[
+                      "Jan",
+                      "Feb",
+                      "Mar",
+                      "Apr",
+                      "May",
+                      "Jun",
+                      "Jul",
+                      "Aug",
+                      "Sep",
+                      "Oct",
+                      "Nov",
+                      "Dec",
+                    ].map((month, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="startDateYear"
+                    value={this.state.startDateYear}
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Year</option>
+                    {[...Array(50)].map((_, i) => (
+                      <option key={i} value={2025 - i}>
+                        {2025 - i}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {(errors.startDateDay ||
                   errors.startDateMonth ||
-                  errors.startDateYear}
-              </span>
-            )}
+                  errors.startDateYear) && (
+                  <span className={styles.error}>
+                    {errors.startDateDay ||
+                      errors.startDateMonth ||
+                      errors.startDateYear}
+                  </span>
+                )}
+              </div>
+            </div>
 
-            <label>Notes</label>
-            <textarea
-              name="notes"
-              value={this.state.notes}
-              onChange={this.handleChange}
-              placeholder="Enter notes"
-            />
+            <div className={styles.formGroup}>
+              <label>Notes</label>
+              <div className={styles.inputWrapper}>
+                <textarea
+                  name="notes"
+                  value={this.state.notes}
+                  onChange={this.handleChange}
+                  placeholder="Enter notes"
+                />
+              </div>
+            </div>
 
             <div className={styles.buttonContainer}>
               <button
@@ -350,12 +390,12 @@ class EmployeeForm extends Component {
                   {this.state.id ? "Update" : "Submit"}
                 </button>
                 <button
-        type="button"
-        className={styles.resetButton}
-        onClick={this.handleReset} // Add event handler here
-      >
-        Reset
-      </button>
+                  type="button"
+                  className={styles.resetButton}
+                  onClick={this.handleReset}
+                >
+                  Reset
+                </button>
               </div>
             </div>
           </form>
@@ -366,4 +406,3 @@ class EmployeeForm extends Component {
 }
 
 export default EmployeeForm;
-// ww

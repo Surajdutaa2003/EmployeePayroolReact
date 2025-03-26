@@ -18,7 +18,7 @@ class EmployeeList extends Component {
   fetchEmployees = async () => {
     try {
       const response = await axios.get("http://localhost:3000/employees");
-      this.setState({ employees: response.data });
+      this.setState({ employees: response.data.reverse() });
     } catch (error) {
       console.error("Error fetching employees:", error);
     }
@@ -118,7 +118,7 @@ class EmployeeList extends Component {
             <div className={styles.searchContainer}>
               <input
                 type="text"
-                placeholder="Search by name, gender, department, salary, or date..."
+                // placeholder="Search by name, gender, department, salary, or date..."
                 value={searchQuery}
                 onChange={this.handleSearch}
                 className={styles.searchInput}

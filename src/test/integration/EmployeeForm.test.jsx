@@ -2,6 +2,8 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import EmployeeForm from "../../component/EmployeeForm";
+import axios from "axios";
+jest.mock("axios");
 
 describe("EmployeeForm Component", () => {
   test("should allow user to input Name", () => {
@@ -39,10 +41,9 @@ describe("EmployeeForm Component", () => {
       </MemoryRouter>
     );
   
-    const profileImage = screen.getByRole("radio", { name: /profile 1/i });
-    fireEvent.click(profileImage);
-  
-    expect(profileImage.checked).toBe(true);
+    const radioButton = screen.getByRole("radio", { name: /boy1.jpeg/i });
+    fireEvent.click(radioButton);
+    expect(radioButton).toBeChecked();
   });
   
   test("should allow user to select gender", () => {
@@ -113,6 +114,53 @@ describe("EmployeeForm Component", () => {
   
     expect(nameInput.value).toBe("");
   });
+test("should show validation errors when form fields are empty", async () => {
+  render(
+    <MemoryRouter>
+      <EmployeeForm />
+    </MemoryRouter>
+  );
+
+  fireEvent.click(screen.getByText("Submit"));
+
+  expect(screen.getByText("Employee name is required")).toBeInTheDocument();
+});
+
    
- 
+test("should update profile image selection when clicked", async () => {
+  render(
+    <MemoryRouter>
+      <EmployeeForm />
+    </MemoryRouter>
+  );
+
+  const profileImages = await screen.findAllByTestId("profile-image-option");
+  fireEvent.click(profileImages[1]); // Selecting the second profile image
+
+  expect(profileImages[1]).toBeChecked(); // ✅ Check if radio button is selected
+});
+
+test("EmployeeForm Component > should reset profile image on form reset", () => {
+  render(
+    <MemoryRouter>
+      <EmployeeForm />
+    </MemoryRouter>
+  );
+
+  // Select a profile image
+  const profileImages = screen.getAllByRole("radio");
+  fireEvent.click(profileImages[1]); // Selecting the second profile image
+  expect(profileImages[1].checked).toBe(true);
+
+  // Click reset button
+  const resetButton = screen.getByText(/reset/i);
+  fireEvent.click(resetButton);
+
+  // Ensure all profile images are unchecked after reset
+  profileImages.forEach((image) => {
+    expect(image.checked).toBe(false);
+  });
+});
+
+
 });

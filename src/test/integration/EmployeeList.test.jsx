@@ -119,7 +119,7 @@ describe("EmployeeList Component", () => {
     const editButtons = screen.getAllByRole("button");
     fireEvent.click(editButtons[1]);
 
-    expect(localStorage.getItem("editEmployeeId")).toBe("1");
+    expect(localStorage.getItem("editEmployeeId")).toBe("2");
   });
 
   test("checks if Add User button is present", async () => {

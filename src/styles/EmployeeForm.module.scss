@@ -1,288 +1,257 @@
-
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; 
+  overflow: auto; /* Let the browser handle scrolling */
 }
-
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2000;
-  background-color: #fff; 
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
-
-  h1 {
-    font-size: 18px;
-    color: #333;
-    margin: 0;
-    text-transform: uppercase;
-  }
-}
-
 
 .container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; 
+  position: relative;
   background-color: #f5f5f5;
-  padding-top: 60px; 
-  overflow-y: auto; 
-
+  min-height: calc(100vh - 50px); /* Use min-height instead of height */
+  padding: 0;
+  margin-top: 50px;
+z-index: 1;
   .formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    width: 100%;
-    padding: 20px; 
-    box-sizing: border-box;
+    position: relative;
+    max-width: 750px; /* Match the width of the form in the screenshot */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    top: 19px;
+    right: 52px;
+    z-index: 1;
+    
 
     form {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 600px;
-      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
 
-      label {
-        display: block;
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 5px;
-        margin-top: 15px;
-        text-transform: uppercase;
-      }
-
-      input[type="text"],
-      select,
-      textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
+      h1 {
+        font-size: 24px;
         color: #333;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-
-        &:focus {
-          outline: none;
-          border-color: #007bff;
-        }
+        margin: 0 0 20px;
+        text-align: center;
       }
 
-      textarea {
-        height: 80px;
-        resize: none;
-      }
-
-      .profileSection {
+      .formGroup {
         display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 15px;
-
-        .profileImages {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-
-          .profileImageLabel {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-              border: 2px solid transparent;
-              transition: border 0.3s ease;
-
-              &:hover {
-                border-color: #007bff;
-              }
-            }
-
-            input[type="radio"]:checked + img {
-              border-color: #007bff;
-            }
-          }
-        }
-      }
-
-      > div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 15px;
-
-        label {
-          display: flex;
-          align-items: center;
-          margin: 0;
-        }
-      }
-
-      .startDate {
-        display: flex;
-        flex-wrap: wrap;
+        align-items: flex-start; /* Align items at the top */
         gap: 10px;
 
-        select {
+        label {
+          font-size: 14px;
+          color: #333;
+          font-weight: bold;
+          width: 100px; /* Fixed width for labels to align them */
+          padding-top: 5px; /* Align label text with input */
+        }
+
+        .inputWrapper {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          input[type="text"],
+          select,
+          textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+
+            &::placeholder {
+              color: #999;
+              font-style: italic;
+            }
+
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 96px;
+          }
+
+          /* Profile Image Section */
+          .profileImages {
+            display: flex;
+            gap: 15px; /* Increased gap to match the screenshot */
+
+            .profileImageLabel {
+              display: flex;
+              align-items: center;
+              gap: 5px; /* Space between radio button and image */
+
+              input[type="radio"] {
+                width: 16px;
+                height: 16px;
+                margin: 0; /* Remove default margin */
+              }
+
+              img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid transparent;
+                cursor: pointer;
+              }
+
+              input:checked + img {
+                border: 2px solid #007bff; /* Highlight selected image */
+              }
+            }
+          }
+
+          /* Gender Section */
+          .radioGroup {
+            display: flex;
+            gap: 20px; /* Increased gap to match the screenshot */
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              font-weight: normal;
+              width: auto;
+
+              input[type="radio"] {
+                margin: 0;
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          /* Department Section */
+          .checkboxGroup {
+            display: flex;
+            gap: 20px; /* Increased gap to match the screenshot */
+            flex-wrap: wrap;
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              font-weight: normal;
+              width: auto;
+
+              input[type="checkbox"] {
+                margin: 0;
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          /* Salary Section */
+          select[name="salary"] {
+            width: 150px; /* Made the salary dropdown smaller */
+          }
+
+          /* Start Date Section */
+          .startDate {
+            display: flex;
+            gap: 10px;
+
+            select {
+              padding: 8px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              font-size: 14px;
+              color: #333;
+
+              &:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+              }
+            }
+          }
         }
       }
 
       .buttonContainer {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
+        align-items: center;
         margin-top: 20px;
 
-        .cancelButton,
-        .submitButton,
-        .resetButton {
-          padding: 10px 20px;
+        .cancelButton {
+          padding: 8px 16px;
+          background-color: #ccc; /* Gray color by default */
+          color: #333; /* Darker text color for contrast */
           border: none;
           border-radius: 4px;
           font-size: 14px;
           cursor: pointer;
           transition: background-color 0.3s ease;
-        }
-
-        .cancelButton {
-          background-color: #ccc;
-          color: #333;
 
           &:hover {
-            background-color: #dc3545;
-            color: #fff;
+            background-color: #dc3545; /* Red on hover */
+            color: #fff; /* White text on hover for contrast */
           }
         }
 
         .rightButtons {
           display: flex;
-          flex-wrap: wrap;
           gap: 10px;
 
-          .submitButton,
-          .resetButton {
-            background-color: #ccc;
-            color: #333;
+          .submitButton {
+            padding: 8px 16px;
+            background-color: #ccc; /* Gray color by default */
+            color: #333; /* Darker text color for contrast */
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
 
             &:hover {
-              background-color: #E9FEA5;
-              color: #fff;
+              background-color: #82A70C; /* Green on hover */
+              color: #fff; /* White text on hover for contrast */
+            }
+          }
+
+          .resetButton {
+            padding: 8px 16px;
+            background-color: #ccc; /* Gray color by default */
+            color: #333; /* Darker text color for contrast */
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #82A70C; /* Green on hover */
+              color: #fff; /* White text on hover for contrast */
             }
           }
         }
       }
-    }
-  }
-}
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .container {
-    padding-top: 50px; 
-  }
-
-  .formContainer {
-    padding: 15px;
-
-    form {
-      padding: 20px;
-      max-width: 90%;
-    }
-
-    .profileSection {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .buttonContainer {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-
-      .rightButtons {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .submitButton,
-      .resetButton,
-      .cancelButton {
-        width: 100%;
-        text-align: center;
+      .error {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
       }
     }
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding-top: 40px; 
-  }
-
-  .formContainer {
-    padding: 10px;
-
-    form {
-      padding: 15px;
-      max-width: 100%;
-    }
-
-    .buttonContainer {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .profileImages img {
-      width: 40px;
-      height: 40px;
-    }
-
-    input[type="text"],
-    select,
-    textarea {
-      font-size: 12px;
-      padding: 6px;
-    }
-  }
-}
-.error {
-  color: #ff0000;
-  font-size: 12px;
-  margin-top: 5px;
-  display: block;
-}
-
-
-.formContainer {
-  .error {
-    color: #ff0000;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-  }
+.pf{
+  position: relative;
+  top: 10px;
 }
