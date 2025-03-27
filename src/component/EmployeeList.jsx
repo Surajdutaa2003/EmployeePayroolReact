@@ -21,6 +21,7 @@ class EmployeeList extends Component {
       this.setState({ employees: response.data.reverse() });
     } catch (error) {
       console.error("Error fetching employees:", error);
+      this.setState({ error: "Failed to fetch employees" });
     }
   };
 
@@ -31,6 +32,7 @@ class EmployeeList extends Component {
   handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/employees/${id}`);
+
       this.fetchEmployees(); // Refresh list after deletion
     } catch (error) {
       console.error("Error deleting employee:", error);
@@ -113,6 +115,7 @@ class EmployeeList extends Component {
           <div className={styles.details}>
             <h2>Employee Details</h2>
           </div>
+          
 
           <div className={styles.headerActions}>
             <div className={styles.searchContainer}>
@@ -130,6 +133,7 @@ class EmployeeList extends Component {
             </Link>
           </div>
         </header>
+
 
         <table className={styles.employeeTable}>
           <thead>

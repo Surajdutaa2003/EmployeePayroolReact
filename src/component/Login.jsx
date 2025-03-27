@@ -72,13 +72,15 @@ class Login extends Component {
                 onSuccess={this.handleSuccess}
                 onError={this.handleError}
                 className="google-login-button"
+                data-testid="google-login"
+
               />
             )}
-          </Box>
+          </Box> 
         </Container>
       </GoogleOAuthProvider>
     );
   }
 }
 
-export default Login;
+export default Login; 
