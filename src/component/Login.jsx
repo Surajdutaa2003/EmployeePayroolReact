@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { Button, Typography, Container, Box } from "@mui/material";
 import "../styles/Login.scss"; 
 
-const clientId = "848179557462-n48vdd3lb42ql9agb0k2fa9bnm90vmtg.apps.googleusercontent.com";
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 class Login extends Component {
   constructor(props) {
@@ -31,13 +31,12 @@ class Login extends Component {
   };
 
   handleError = () => {
-    console.log("Login Failed");
-  };
+    alert("Login Failed! Please try again.");
+    };
 
   handleLogout = () => {
     this.setState({ user: null });
     localStorage.removeItem("user");
-    console.log("Logged Out");
   };
 
   render() {

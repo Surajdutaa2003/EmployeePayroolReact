@@ -26,18 +26,35 @@
       color: #fff; 
     }
   }
-
+.profileIcon{
+  position: relative;
+  font-size: 22px;
+  top: 5px;
+}
+.dropdownItem{
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  right: 82px;
+  bottom: 16px;
+}
   .titleLink {
     text-decoration: none;
 
     .title {
+      position: relative;
       font-size: 16px;
       font-weight: 700;
       margin: 0;
       line-height: 1;
-      display: flex;
-      flex-direction: column; 
+      display: flex
+  ;
+      flex-direction: column;
       text-transform: uppercase;
+      right: 452px;
+  
 
       .employee {
         color: #28a745; 
@@ -67,3 +84,4 @@
     }
   }
 }
+// ss

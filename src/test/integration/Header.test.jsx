@@ -20,7 +20,6 @@ describe("Header Component", () => {
 
     expect(screen.getByAltText("Company Logo")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("EmployeePayroll");
-    expect(screen.getByRole("button", { name: "Logout" })).toBeInTheDocument();
   });
 
 

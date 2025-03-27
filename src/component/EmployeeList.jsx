@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import styles from "../styles/EmployeeList.module.scss";
 import { MdSearch, MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import Header from "./Header";
+import { getEmployees, deleteEmployee } from '../API/employeeApi'; // Import API functions
 
 class EmployeeList extends Component {
   state = {
     employees: [],
     searchQuery: "",
+    error: null // Added error state
   };
 
   componentDidMount() {
@@ -17,11 +18,10 @@ class EmployeeList extends Component {
 
   fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/employees");
-      this.setState({ employees: response.data.reverse() });
+      const employees = await getEmployees();
+      this.setState({ employees, error: null });
     } catch (error) {
-      console.error("Error fetching employees:", error);
-      this.setState({ error: "Failed to fetch employees" });
+      this.setState({ error: error.message });
     }
   };
 
@@ -31,11 +31,10 @@ class EmployeeList extends Component {
 
   handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/employees/${id}`);
-
-      this.fetchEmployees(); // Refresh list after deletion
+      const message = await deleteEmployee(id);
+      this.fetchEmployees(); 
     } catch (error) {
-      console.error("Error deleting employee:", error);
+      this.setState({ error: error.message });
     }
   };
 
@@ -79,7 +78,7 @@ class EmployeeList extends Component {
   };
 
   render() {
-    const { employees, searchQuery } = this.state;
+    const { employees, searchQuery, error } = this.state;
 
     const filteredEmployees = employees.filter((employee) => {
       const query = searchQuery.toLowerCase();
@@ -116,12 +115,10 @@ class EmployeeList extends Component {
             <h2>Employee Details</h2>
           </div>
           
-
           <div className={styles.headerActions}>
             <div className={styles.searchContainer}>
               <input
                 type="text"
-                
                 value={searchQuery}
                 onChange={this.handleSearch}
                 className={styles.searchInput}
@@ -134,6 +131,7 @@ class EmployeeList extends Component {
           </div>
         </header>
 
+        {error && <div className={styles.error}>{error}</div>}
 
         <table className={styles.employeeTable}>
           <thead>
@@ -222,4 +220,3 @@ class EmployeeList extends Component {
 }
 
 export default EmployeeList;
-// ss

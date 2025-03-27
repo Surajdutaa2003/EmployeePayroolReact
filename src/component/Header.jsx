@@ -1,19 +1,33 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { MdAccountCircle, MdLogout } from "react-icons/md"; 
 import logo from "../assets/logo.jpeg";
 import styles from "../styles/Header.module.scss";
 
 const Header = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+   
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser && storedUser.name) {
+      setUserName(storedUser.name);
+    } else {
+      setUserName("User");
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    navigate("/login"); 
+    navigate("/login");
   };
 
   return (
     <header className={styles.header}>
       <img src={logo} alt="Company Logo" className={styles.logo} />
+
       <Link to="/employees" className={styles.titleLink}>
         <h1 className={styles.title}>
           <span className={styles.employee}>Employee</span>
@@ -21,10 +35,22 @@ const Header = () => {
         </h1>
       </Link>
 
-      
-      <button onClick={handleLogout} className={styles.logoutButton}>
-        Logout
-      </button>
+      {/* Profile Section */}
+      <div className={styles.profileSection}>
+        <div className={styles.profileInfo} onClick={() => setDropdownOpen(!dropdownOpen)}>
+          <MdAccountCircle className={styles.profileIcon} />
+          <span className={styles.userName}>{userName}</span>
+        </div>
+
+        {dropdownOpen && (
+          <div className={styles.dropdownMenu}>
+            <button onClick={handleLogout} className={styles.dropdownItem}>
+              <MdLogout className={styles.logoutIcon} />
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 };

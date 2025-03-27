@@ -1,64 +1,62 @@
-import { render, screen, within, fireEvent } from "@testing-library/react";
-import Login from "../../component/Login";
-import Header from "../../component/Header"; 
+import { render, screen, fireEvent } from "@testing-library/react";
+import Header from "../../component/Header";
 import { MemoryRouter } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import Login from "../../component/Login";
 
-jest.mock("jwt-decode", () => ({
-  jwtDecode: jest.fn(),
-}));
+describe("Header Component", () => {
+  it("opens dropdown on clicking profile icon", () => {
+    const mockUser = { name: "John Doe" };
+    localStorage.setItem("user", JSON.stringify(mockUser));
 
-const clientId = "test-client-id";
-
-// ✅ Mock GoogleLogin to ensure it renders correctly
-jest.mock("@react-oauth/google", () => ({
-  GoogleLogin: ({ onSuccess }) => (
-    <button data-testid="google-login" onClick={() => onSuccess({ credential: "mockToken" })}>
-      Google Login
-    </button>
-  ),
-  GoogleOAuthProvider: ({ children }) => <div>{children}</div>,
-}));
-
-describe("Login Component", () => {
-  it("renders login page elements correctly", () => {
-    render(
-      <GoogleOAuthProvider clientId={clientId}>
-        <Login />
-      </GoogleOAuthProvider>
-    );
-
-    expect(screen.getByText("Employee Payroll")).toBeInTheDocument();
-    expect(screen.getByText("Sign in to manage your payroll")).toBeInTheDocument();
-  });
-
-  
-  
-
-  it("renders Header with logo, title, and logout button", () => {
     render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>
     );
 
-    expect(screen.getByAltText("Company Logo")).toBeInTheDocument();
-    expect(screen.getByText("Employee")).toBeInTheDocument();
-    expect(screen.getByText("Payroll")).toBeInTheDocument();
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
+
+   
+    fireEvent.click(screen.getByText("John Doe"));
+
     expect(screen.getByText("Logout")).toBeInTheDocument();
   });
 
   it("logs out the user when logout button is clicked", () => {
+    const mockUser = { name: "John Doe" };
+    localStorage.setItem("user", JSON.stringify(mockUser));
+
     render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>
     );
 
+    fireEvent.click(screen.getByText("John Doe"));
+
+   
     const logoutButton = screen.getByText("Logout");
+    expect(logoutButton).toBeInTheDocument();
+
+   
     fireEvent.click(logoutButton);
 
+    
     expect(localStorage.getItem("user")).toBeNull();
   });
+
+  it("displays the correct title in Typography", () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+  
+    expect(screen.getByText("Employee Payroll")).toBeInTheDocument();
+    expect(screen.getByText("Sign in to manage your payroll")).toBeInTheDocument();
+
+
+
+  });
 });
+// ww

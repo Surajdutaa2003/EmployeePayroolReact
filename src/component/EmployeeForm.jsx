@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Navigate } from "react-router-dom";
 import styles from "../styles/EmployeeForm.module.scss";
-
 import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
-
 import Header from "./Header";
+import { getEmployeeById, createEmployee, updateEmployee } from '../API/employeeApi';
 
 class EmployeeForm extends Component {
   state = {
@@ -23,18 +21,17 @@ class EmployeeForm extends Component {
     startDate: "",
     notes: "",
     redirect: false,
-    errors: {}, 
+    errors: {},
+    loading: false
   };
 
   async componentDidMount() {
     const editEmployeeId = localStorage.getItem("editEmployeeId");
-
     if (editEmployeeId) {
+      this.setState({ loading: true });
       try {
-        const response = await axios.get(
-          `http://localhost:3000/employees/${editEmployeeId}`
-        );
-        const { startDate } = response.data;
+        const employee = await getEmployeeById(editEmployeeId);
+        const { startDate } = employee;
         let startDateDay = "",
           startDateMonth = "",
           startDateYear = "";
@@ -45,13 +42,14 @@ class EmployeeForm extends Component {
           startDateYear = date.getFullYear().toString();
         }
         this.setState({
-          ...response.data,
+          ...employee,
           startDateDay,
           startDateMonth,
           startDateYear,
+          loading: false
         });
       } catch (error) {
-        // Removed console.error
+        this.setState({ loading: false, errors: { fetch: error.message } });
       }
     }
   }
@@ -59,7 +57,7 @@ class EmployeeForm extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      errors: { ...this.state.errors, [e.target.name]: "" }, 
+      errors: { ...this.state.errors, [e.target.name]: "" },
     });
   };
 
@@ -130,6 +128,7 @@ class EmployeeForm extends Component {
       return;
     }
 
+    this.setState({ loading: true });
     const {
       id,
       startDateDay,
@@ -137,6 +136,8 @@ class EmployeeForm extends Component {
       startDateYear,
       startDate,
       errors,
+      loading,
+      redirect,
       ...employeeData
     } = this.state;
     const editEmployeeId = localStorage.getItem("editEmployeeId");
@@ -151,17 +152,17 @@ class EmployeeForm extends Component {
 
     try {
       if (editEmployeeId) {
-        await axios.patch(
-          `http://localhost:3000/employees/${editEmployeeId}`,
-          employeeData
-        );
+        await updateEmployee(editEmployeeId, employeeData);
         localStorage.removeItem("editEmployeeId");
       } else {
-        await axios.post("http://localhost:3000/employees", employeeData);
+        await createEmployee(employeeData);
       }
-      this.setState({ redirect: true });
+      this.setState({ redirect: true, loading: false });
     } catch (error) {
-      // Removed console.error
+      this.setState({ 
+        errors: { submit: error.message },
+        loading: false 
+      });
     }
   };
 
@@ -170,7 +171,7 @@ class EmployeeForm extends Component {
       return <Navigate to="/employees" />;
     }
 
-    const { errors } = this.state;
+    const { errors, loading } = this.state;
 
     return (
       <div className={styles.container}>
@@ -179,6 +180,9 @@ class EmployeeForm extends Component {
           <form onSubmit={this.handleSubmit}>
             <h1>Employee Payroll Form</h1>
 
+            {errors.fetch && <div className={styles.error}>{errors.fetch}</div>}
+            {errors.submit && <div className={styles.error}>{errors.submit}</div>}
+
             <div className={styles.formGroup}>
               <label>Name</label>
               <div className={styles.inputWrapper}>
@@ -186,8 +190,9 @@ class EmployeeForm extends Component {
                   type="text"
                   name="name"
                   placeholder="Enter employee name"
-                  value={this.state.name||""}
+                  value={this.state.name || ""}
                   onChange={this.handleChange}
+                  disabled={loading}
                 />
                 {errors.name && <span className={styles.error}>{errors.name}</span>}
               </div>
@@ -210,6 +215,7 @@ class EmployeeForm extends Component {
                         checked={this.state.profileImage === img.name}
                         onChange={this.handleChange}
                         data-testid="profile-image-option"
+                        disabled={loading}
                       />
                       <img src={img.src} alt={`Profile ${img.name}`} />
                     </label>
@@ -232,6 +238,7 @@ class EmployeeForm extends Component {
                       value="Male"
                       checked={this.state.gender === "Male"}
                       onChange={this.handleChange}
+                      disabled={loading}
                     />
                     Male
                   </label>
@@ -242,6 +249,7 @@ class EmployeeForm extends Component {
                       value="Female"
                       checked={this.state.gender === "Female"}
                       onChange={this.handleChange}
+                      disabled={loading}
                     />
                     Female
                   </label>
@@ -263,6 +271,7 @@ class EmployeeForm extends Component {
                         value={dept}
                         checked={this.state.department.includes(dept)}
                         onChange={this.handleCheckboxChange}
+                        disabled={loading}
                       />
                       {dept}
                     </label>
@@ -275,14 +284,14 @@ class EmployeeForm extends Component {
             </div>
 
             <div className={styles.formGroup}>
-            <label htmlFor="salary">Salary</label> 
-
+              <label htmlFor="salary">Salary</label>
               <div className={styles.inputWrapper}>
                 <select
                   id="salary"
                   name="salary"
                   value={this.state.salary}
                   onChange={this.handleChange}
+                  disabled={loading}
                 >
                   <option value="">Select Salary</option>
                   <option value="50000">50,000</option>
@@ -302,6 +311,7 @@ class EmployeeForm extends Component {
                     name="startDateDay"
                     value={this.state.startDateDay}
                     onChange={this.handleChange}
+                    disabled={loading}
                   >
                     <option value="">Day</option>
                     {[...Array(31)].map((_, i) => (
@@ -314,6 +324,7 @@ class EmployeeForm extends Component {
                     name="startDateMonth"
                     value={this.state.startDateMonth}
                     onChange={this.handleChange}
+                    disabled={loading}
                   >
                     <option value="">Month</option>
                     {[
@@ -339,6 +350,7 @@ class EmployeeForm extends Component {
                     name="startDateYear"
                     value={this.state.startDateYear}
                     onChange={this.handleChange}
+                    disabled={loading}
                   >
                     <option value="">Year</option>
                     {[...Array(50)].map((_, i) => (
@@ -365,9 +377,10 @@ class EmployeeForm extends Component {
               <div className={styles.inputWrapper}>
                 <textarea
                   name="notes"
-                  value={this.state.notes}
+                  value={this.state.notes || ""}
                   onChange={this.handleChange}
                   placeholder="Enter notes"
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -377,17 +390,23 @@ class EmployeeForm extends Component {
                 type="button"
                 className={styles.cancelButton}
                 onClick={() => this.setState({ redirect: true })}
+                disabled={loading}
               >
                 Cancel
               </button>
               <div className={styles.rightButtons}>
-                <button type="submit" className={styles.submitButton}>
-                  {this.state.id ? "Update" : "Submit"}
+                <button 
+                  type="submit" 
+                  className={styles.submitButton}
+                  disabled={loading}
+                >
+                  {loading ? "Processing..." : (this.state.id ? "Update" : "Submit")}
                 </button>
                 <button
                   type="button"
                   className={styles.resetButton}
                   onClick={this.handleReset}
+                  disabled={loading}
                 >
                   Reset
                 </button>

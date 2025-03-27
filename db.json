@@ -1,36 +1,6 @@
 {
   "employees": [
     {
-      "id": "b5ff",
-      "name": "harsh raj",
-      "profileImage": "/src/assets/boy1.jpeg",
-      "gender": "Male",
-      "department": [
-        "HR"
-      ],
-      "salary": "70000",
-      "note": "ednedm",
-      "redirect": false,
-      "redirectToList": false,
-      "error": null,
-      "startDate": "2023-02-03",
-      "notes": ""
-    },
-    {
-      "id": "5d16",
-      "name": "Raghav",
-      "profileImage": "boy2.jpeg",
-      "gender": "Male",
-      "department": [
-        "Finance",
-        "HR"
-      ],
-      "salary": "60000",
-      "startDate": "2025-01-02",
-      "redirect": false,
-      "notes": ""
-    },
-    {
       "id": "6c7d",
       "name": "rahul",
       "profileImage": "boy2.jpeg",
@@ -479,32 +449,6 @@
       "startDate": "2022-07-06"
     },
     {
-      "id": "37bc",
-      "name": "Ashutosh",
-      "profileImage": "boy1.jpeg",
-      "gender": "Male",
-      "department": [
-        "Sales"
-      ],
-      "salary": "50000",
-      "notes": "dsbk",
-      "redirect": false,
-      "startDate": "2009-10-17"
-    },
-    {
-      "id": "822f",
-      "name": "harry",
-      "profileImage": "boy1.jpeg",
-      "gender": "Male",
-      "department": [
-        "HR"
-      ],
-      "salary": "60000",
-      "notes": "hkj",
-      "redirect": false,
-      "startDate": "2008-10-28"
-    },
-    {
       "id": "a9c8",
       "name": "jdbc",
       "profileImage": "boy1.jpeg",
@@ -532,17 +476,17 @@
       "startDate": "2009-10-17"
     },
     {
-      "id": "820e",
-      "name": "ss",
-      "profileImage": "boy1.jpeg",
+      "id": "8636",
+      "name": "harsh kumar",
+      "profileImage": "girl1.jpeg",
       "gender": "Male",
       "department": [
-        "Sales"
+        "HR",
+        "Engineer"
       ],
       "salary": "50000",
-      "notes": "dew",
-      "redirect": false,
-      "startDate": "2012-12-18"
+      "notes": "j",
+      "startDate": "2011-10-18"
     }
   ]
 }
