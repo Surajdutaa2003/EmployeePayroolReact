@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { Button, Typography, Container, Box } from "@mui/material";
-import "../styles/Login.scss"; // ✅ Sahi tarika
+import "../styles/Login.scss"; 
 
-const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const clientId = "848179557462-n48vdd3lb42ql9agb0k2fa9bnm90vmtg.apps.googleusercontent.com";
 
 class Login extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Login extends Component {
   handleSuccess = (response) => {
     const token = response.credential;
     const decodedUser = jwtDecode(token);
-    console.log("Login Success:", decodedUser);
+    
     this.setState({ user: decodedUser, isLoading: true });
 
     
@@ -73,7 +73,7 @@ class Login extends Component {
                 onError={this.handleError}
                 className="google-login-button"
                 data-testid="google-login"
-
+                 
               />
             )}
           </Box> 

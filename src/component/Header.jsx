@@ -4,11 +4,11 @@ import logo from "../assets/logo.jpeg";
 import styles from "../styles/Header.module.scss";
 
 const Header = () => {
-  const navigate = useNavigate(); // useNavigate hook for navigation
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Remove user data
-    navigate("/login"); // Redirect to login
+    localStorage.removeItem("user");
+    navigate("/login"); 
   };
 
   return (
@@ -21,7 +21,7 @@ const Header = () => {
         </h1>
       </Link>
 
-      {/* Logout Button */}
+      
       <button onClick={handleLogout} className={styles.logoutButton}>
         Logout
       </button>

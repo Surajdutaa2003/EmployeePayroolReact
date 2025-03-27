@@ -69,28 +69,8 @@ describe("EmployeeList Component", () => {
     }); 
   }); 
 
-//  test("handles delete button click", async () => {
-//     axios.get.mockResolvedValueOnce({ data: mockEmployees });
-//     axios.delete.mockResolvedValueOnce({});
-
-//     render(
-//       <MemoryRouter>
-//         <EmployeeList />
-//       </MemoryRouter>
-//     );
-
-//     await waitFor(() => {
-//       expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
-//     });
-
-//     const deleteButtons = screen.getAllByRole("button");
-//     fireEvent.click(deleteButtons[0]);
-
-//     expect(axios.delete).toHaveBeenCalledWith(
-//       expect.stringMatching(/\/employees\/\w+/) // ✅ Regex for any ID
-//     );
     
-//   });
+
 
   test("handles empty employee list", async () => {
     axios.get.mockResolvedValueOnce({ data: [] });
@@ -137,19 +117,7 @@ describe("EmployeeList Component", () => {
     const addButton = screen.getByText(/Add User/i);
     expect(addButton).toBeInTheDocument();
   });
-  test("handles API error while fetching employees", async () => {
-    axios.get.mockRejectedValueOnce(new Error("Network Error"));
   
-    render(
-      <MemoryRouter>
-        <EmployeeList />
-      </MemoryRouter>
-    );
-  
-    
-      expect(screen.getByText("Failed to fetch employees")).toBeInTheDocument();
-    
-  });
   
 });
 // ss

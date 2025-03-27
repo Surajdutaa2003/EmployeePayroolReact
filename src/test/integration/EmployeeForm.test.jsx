@@ -135,9 +135,9 @@ test("should update profile image selection when clicked", async () => {
   );
 
   const profileImages = await screen.findAllByTestId("profile-image-option");
-  fireEvent.click(profileImages[1]); // Selecting the second profile image
+  fireEvent.click(profileImages[1]); 
 
-  expect(profileImages[1]).toBeChecked(); // ✅ Check if radio button is selected
+  expect(profileImages[1]).toBeChecked(); 
 });
 
 test("EmployeeForm Component > should reset profile image on form reset", () => {
@@ -147,16 +147,16 @@ test("EmployeeForm Component > should reset profile image on form reset", () => 
     </MemoryRouter>
   );
 
-  // Select a profile image
+ 
   const profileImages = screen.getAllByRole("radio");
-  fireEvent.click(profileImages[1]); // Selecting the second profile image
+  fireEvent.click(profileImages[1]); 
   expect(profileImages[1].checked).toBe(true);
 
-  // Click reset button
+  
   const resetButton = screen.getByText(/reset/i);
   fireEvent.click(resetButton);
 
-  // Ensure all profile images are unchecked after reset
+ 
   profileImages.forEach((image) => {
     expect(image.checked).toBe(false);
   });

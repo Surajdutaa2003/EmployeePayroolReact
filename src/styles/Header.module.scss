@@ -3,19 +3,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; // Ensures header is always on top
+  z-index: 1000; 
   background-color: #fff;
   padding-left: 5px;
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 63px;
-  justify-content: space-between; // Push items to edges
+  justify-content: space-between; 
 
   .logo {
     width: 32px;
     height: 32px;
-    background-color: #28a745; // Green background
+    background-color: #28a745; 
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -23,7 +23,7 @@
 
     .logoIcon {
       font-size: 20px;
-      color: #fff; // White icon color
+      color: #fff; 
     }
   }
 
@@ -36,22 +36,22 @@
       margin: 0;
       line-height: 1;
       display: flex;
-      flex-direction: column; // Stack text vertically
+      flex-direction: column; 
       text-transform: uppercase;
 
       .employee {
-        color: #28a745; // Green text
+        color: #28a745; 
       }
 
       .payroll {
-        color: #000; // Black text
+        color: #000; 
       }
     }
   }
 
-  /* ✅ Logout Button Styling */
+  
   .logoutButton {
-    background-color: #dc3545; /* Red button */
+    background-color: #dc3545; 
     color: white;
     border: none;
     padding: 8px 14px;
@@ -60,10 +60,10 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: auto; /* Push button to the right */
+    margin-left: auto; 
 
     &:hover {
-      background-color: #c82333; /* Darker red on hover */
+      background-color: #c82333; 
     }
   }
 }

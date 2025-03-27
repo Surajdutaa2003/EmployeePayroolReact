@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #28a745, #218838); // ✅ Green payroll theme
+  background: linear-gradient(135deg, #28a745, #218838); 
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
@@ -36,7 +36,7 @@
     margin-bottom: 30px;
   }
 
-  /* ✅ Loading Spinner */
+  
   .spinner {
     width: 40px;
     height: 40px;
@@ -47,7 +47,7 @@
     margin: 0 auto;
   }
 
-  /* ✅ Welcome Section */
+ 
   .welcome-section {
     animation: fadeIn 0.5s ease-in-out;
 
@@ -78,7 +78,7 @@
   }
 }
 
-/* ✅ Styled Google Login Button */
+
 .google-login-button {
   display: inline-block;
   background: #fff;
@@ -100,11 +100,11 @@
   span {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500 !important;
-    color: #28a745 !important; // ✅ Payroll theme green
+    color: #28a745 !important; 
   }
 }
 
-/* ✅ Animations */
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -121,7 +121,7 @@ class EmployeeList extends Component {
             <div className={styles.searchContainer}>
               <input
                 type="text"
-                // placeholder="Search by name, gender, department, salary, or date..."
+                
                 value={searchQuery}
                 onChange={this.handleSearch}
                 className={styles.searchInput}

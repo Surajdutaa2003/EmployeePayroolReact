@@ -530,6 +530,19 @@
       "notes": "sjn",
       "redirect": false,
       "startDate": "2009-10-17"
+    },
+    {
+      "id": "820e",
+      "name": "ss",
+      "profileImage": "boy1.jpeg",
+      "gender": "Male",
+      "department": [
+        "Sales"
+      ],
+      "salary": "50000",
+      "notes": "dew",
+      "redirect": false,
+      "startDate": "2012-12-18"
     }
   ]
 }

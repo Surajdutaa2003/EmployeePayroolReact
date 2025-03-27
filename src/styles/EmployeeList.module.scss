@@ -19,8 +19,8 @@ body, html {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #F5F5F5; /* White background to match the screenshot */
-    padding: 15px 20px; /* Reduced padding for a more compact look */
+    background-color: #F5F5F5; 
+    padding: 15px 20px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,7 @@ body, html {
     .details {
       h2 {
         position: relative;
-        font-size: 20px; /* Slightly smaller to match the screenshot */
+        font-size: 20px; 
         color: #333;
         margin: 0;
         left: 44px;
@@ -39,7 +39,7 @@ body, html {
     .headerActions {
       display: flex;
       align-items: center;
-      gap: 10px; /* Reduced gap between search and button */
+      gap: 10px; 
 
       .searchContainer {
         position: relative;
@@ -49,33 +49,33 @@ body, html {
           position: relative;
           padding: 6px 30px 6px 10px;
           border: 1px solid #ddd;
-          border-radius: 50px; /* Make it round when not focused */
+          border-radius: 50px; 
           font-size: 14px;
-          width: 30px; /* Small width when not focused (just enough for the icon) */
-          height: 30px; /* Fixed height to make it circular */
-          color: #333; /* Font color unchanged */
+          width: 30px; 
+          height: 30px; 
+          color: #333; 
           background-color: #fff;
-          transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for expansion */
-          overflow: hidden; /* Hide text when collapsed */
+          transition: width 0.3s ease, padding 0.3s ease; 
+          overflow: hidden; 
           right: 60px;
       
           &::placeholder {
-            color: #999; /* Placeholder font color unchanged */
+            color: #999; 
             font-style: italic;
-            opacity: 0; /* Hide placeholder when not focused */
+            opacity: 0; 
             transition: opacity 0.3s ease;
           }
       
           &:focus {
-            width: 180px; /* Expand to full width when focused */
-            padding: 6px 30px 6px 10px; /* Restore padding when expanded */
-            border-radius: 4px; /* Slightly less round when expanded */
+            width: 180px; 
+            padding: 6px 30px 6px 10px; 
+            border-radius: 4px; 
             outline: none;
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
       
             &::placeholder {
-              opacity: 1; /* Show placeholder when focused */
+              opacity: 1; 
             }
           }
         }
@@ -85,9 +85,9 @@ body, html {
           right: 73px;
           top: 50%;
           transform: translateY(-50%);
-          color: #666; /* Font color unchanged */
+          color: #666; 
           font-size: 16px;
-          pointer-events: none; /* Prevent the icon from blocking input clicks */
+          pointer-events: none;
         }
       }
 
@@ -118,8 +118,8 @@ body, html {
   }
 
   .employeeTable {
-    width: 90%; /* Reduced table width to make the container smaller */
-    margin: 0 auto; /* Center the table */
+    width: 90%; 
+    margin: 0 auto; 
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -128,22 +128,22 @@ body, html {
     margin-top: 10px;
 
     thead {
-      background-color: #4a5a6b; /* Dark header background to match the screenshot */
+      background-color: #4a5a6b; 
       color: #fff;
 
       th {
-        padding: 10px; /* Reduced padding */
+        padding: 10px; 
         text-align: left;
         font-size: 14px;
         text-transform: uppercase;
       }
 
-      /* Reduce space between Department and Salary columns */
+     
       th:nth-child(4) {
-        padding-right: 5px; /* Reduce space on the right of Department */
+        padding-right: 5px; 
       }
       th:nth-child(5) {
-        padding-left: 5px; /* Reduce space on the left of Salary */
+        padding-left: 5px; 
       }
     }
 
@@ -161,7 +161,7 @@ body, html {
         }
 
         td {
-          padding: 10px; /* Reduced padding */
+          padding: 10px; 
           font-size: 14px;
           color: #333;
 
@@ -177,7 +177,7 @@ body, html {
 
           .departmentTag {
             display: inline-block;
-            background-color: #E9FEA5; /* Light yellow background to match the screenshot */
+            background-color: #E9FEA5; 
             color: black;
             padding: 5px 10px;
             border-radius: 12px;
@@ -210,12 +210,12 @@ body, html {
           }
         }
 
-        /* Reduce space between Department and Salary columns in the table body */
+        
         td:nth-child(4) {
-          padding-right: 5px; /* Reduce space on the right of Department */
+          padding-right: 5px; 
         }
         td:nth-child(5) {
-          padding-left: 5px; /* Reduce space on the left of Salary */
+          padding-left: 5px; 
         }
       }
     }

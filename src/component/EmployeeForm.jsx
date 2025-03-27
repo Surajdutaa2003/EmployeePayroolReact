@@ -6,7 +6,7 @@ import styles from "../styles/EmployeeForm.module.scss";
 import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
-// import boy3 from "../assets/boy3.jpeg"; // Added fourth image
+
 import Header from "./Header";
 
 class EmployeeForm extends Component {
@@ -23,7 +23,7 @@ class EmployeeForm extends Component {
     startDate: "",
     notes: "",
     redirect: false,
-    errors: {}, // Added for validation errors
+    errors: {}, 
   };
 
   async componentDidMount() {
@@ -51,7 +51,7 @@ class EmployeeForm extends Component {
           startDateYear,
         });
       } catch (error) {
-        console.error("Error fetching employee:", error);
+        // Removed console.error
       }
     }
   }
@@ -59,7 +59,7 @@ class EmployeeForm extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      errors: { ...this.state.errors, [e.target.name]: "" }, // Clear error when field changes
+      errors: { ...this.state.errors, [e.target.name]: "" }, 
     });
   };
 
@@ -161,10 +161,7 @@ class EmployeeForm extends Component {
       }
       this.setState({ redirect: true });
     } catch (error) {
-      console.error(
-        editEmployeeId ? "Error updating employee:" : "Error adding employee:",
-        error
-      );
+      // Removed console.error
     }
   };
 
@@ -204,7 +201,6 @@ class EmployeeForm extends Component {
                     { src: boy1, name: "boy1.jpeg" },
                     { src: boy2, name: "boy2.jpeg" },
                     { src: girl1, name: "girl1.jpeg" }
-                    // { src: boy3, name: "boy3.jpeg" },
                   ].map((img) => (
                     <label key={img.name} className={styles.profileImageLabel}>
                       <input
@@ -213,8 +209,7 @@ class EmployeeForm extends Component {
                         value={img.name}
                         checked={this.state.profileImage === img.name}
                         onChange={this.handleChange}
-                        data-testid="profile-image-option" // ✅ Add this
-
+                        data-testid="profile-image-option"
                       />
                       <img src={img.src} alt={`Profile ${img.name}`} />
                     </label>

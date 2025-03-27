@@ -1,4 +1,4 @@
-// src/utils/withRouter.js
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 export function withRouter(Component) {

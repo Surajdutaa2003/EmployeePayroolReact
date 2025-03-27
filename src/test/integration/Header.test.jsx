@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import Header from "../../component/Header";
 import { useNavigate } from "react-router-dom";
 
-// ✅ `useNavigate` ka mock setup
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
