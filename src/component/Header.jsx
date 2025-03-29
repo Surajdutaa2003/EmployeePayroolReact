@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MdAccountCircle, MdLogout } from "react-icons/md"; 
+import { MdAccountCircle, MdLogout } from "react-icons/md";
 import logo from "../assets/logo.jpeg";
 import styles from "../styles/Header.module.scss";
 
@@ -10,13 +10,8 @@ const Header = () => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-   
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser && storedUser.name) {
-      setUserName(storedUser.name);
-    } else {
-      setUserName("User");
-    }
+    setUserName(storedUser?.name || "User");
   }, []);
 
   const handleLogout = () => {
@@ -27,7 +22,6 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <img src={logo} alt="Company Logo" className={styles.logo} />
-
       <Link to="/employees" className={styles.titleLink}>
         <h1 className={styles.title}>
           <span className={styles.employee}>Employee</span>
@@ -37,11 +31,18 @@ const Header = () => {
 
       {/* Profile Section */}
       <div className={styles.profileSection}>
-        <div className={styles.profileInfo} onClick={() => setDropdownOpen(!dropdownOpen)}>
+        {/* Profile Toggle Button */}
+        <button
+          className={styles.profileInfo}
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          aria-expanded={dropdownOpen}
+          aria-label="User Profile Menu"
+        >
           <MdAccountCircle className={styles.profileIcon} />
           <span className={styles.userName}>{userName}</span>
-        </div>
+        </button>
 
+        {/* Dropdown Menu */}
         {dropdownOpen && (
           <div className={styles.dropdownMenu}>
             <button onClick={handleLogout} className={styles.dropdownItem}>

@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import styles from "../styles/EmployeeList.module.scss";
 import { MdSearch, MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import Header from "./Header";
-import { getEmployees, deleteEmployee } from '../API/employeeApi'; // Import API functions
+import { getEmployees, deleteEmployee } from '../API/employeeApi'; 
 
 class EmployeeList extends Component {
   state = {
     employees: [],
     searchQuery: "",
-    error: null // Added error state
+    error: null 
   };
 
   componentDidMount() {

@@ -5,7 +5,11 @@ import boy1 from "../assets/boy1.jpeg";
 import boy2 from "../assets/boy2.jpeg";
 import girl1 from "../assets/girl1.jpeg";
 import Header from "./Header";
-import { getEmployeeById, createEmployee, updateEmployee } from '../API/employeeApi';
+import {
+  getEmployeeById,
+  createEmployee,
+  updateEmployee,
+} from "../API/employeeApi";
 
 class EmployeeForm extends Component {
   state = {
@@ -22,10 +26,14 @@ class EmployeeForm extends Component {
     notes: "",
     redirect: false,
     errors: {},
-    loading: false
+    loading: false,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchEmployeeData();
+  }
+
+  fetchEmployeeData = async () => {
     const editEmployeeId = localStorage.getItem("editEmployeeId");
     if (editEmployeeId) {
       this.setState({ loading: true });
@@ -35,30 +43,33 @@ class EmployeeForm extends Component {
         let startDateDay = "",
           startDateMonth = "",
           startDateYear = "";
+
         if (startDate) {
           const date = new Date(startDate);
           startDateDay = date.getDate().toString();
           startDateMonth = (date.getMonth() + 1).toString();
           startDateYear = date.getFullYear().toString();
         }
+
         this.setState({
           ...employee,
           startDateDay,
           startDateMonth,
           startDateYear,
-          loading: false
+          loading: false,
         });
       } catch (error) {
         this.setState({ loading: false, errors: { fetch: error.message } });
       }
     }
-  }
+  };
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-      errors: { ...this.state.errors, [e.target.name]: "" },
-    });
+    const { name, value } = e.target;
+    this.setState((prevState) => ({
+      [name]: value,
+      errors: { ...prevState.errors, [name]: "" },
+    }));
   };
 
   handleReset = () => {
@@ -79,19 +90,14 @@ class EmployeeForm extends Component {
   };
 
   handleCheckboxChange = (e) => {
-    const { department } = this.state;
-    const value = e.target.value;
+    const { value, checked } = e.target;
 
-    if (e.target.checked) {
-      this.setState({
-        department: [...department, value],
-        errors: { ...this.state.errors, department: "" },
-      });
-    } else {
-      this.setState({
-        department: department.filter((dep) => dep !== value),
-      });
-    }
+    this.setState((prevState) => ({
+      department: checked
+        ? [...prevState.department, value]
+        : prevState.department.filter((dep) => dep !== value),
+      errors: { ...prevState.errors, department: "" },
+    }));
   };
 
   validateForm = () => {
@@ -159,9 +165,9 @@ class EmployeeForm extends Component {
       }
       this.setState({ redirect: true, loading: false });
     } catch (error) {
-      this.setState({ 
+      this.setState({
         errors: { submit: error.message },
-        loading: false 
+        loading: false,
       });
     }
   };
@@ -181,36 +187,44 @@ class EmployeeForm extends Component {
             <h1>Employee Payroll Form</h1>
 
             {errors.fetch && <div className={styles.error}>{errors.fetch}</div>}
-            {errors.submit && <div className={styles.error}>{errors.submit}</div>}
+            {errors.submit && (
+              <div className={styles.error}>{errors.submit}</div>
+            )}
 
             <div className={styles.formGroup}>
-              <label>Name</label>
+              <label htmlFor="name">Name</label>
               <div className={styles.inputWrapper}>
                 <input
                   type="text"
+                  id="name"
                   name="name"
                   placeholder="Enter employee name"
                   value={this.state.name || ""}
                   onChange={this.handleChange}
                   disabled={loading}
                 />
-                {errors.name && <span className={styles.error}>{errors.name}</span>}
+                {errors.name && (
+                  <span className={styles.error}>{errors.name}</span>
+                )}
               </div>
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.pf}>Profile Image</label>
+              <label htmlFor="profileImage" className={styles.pf}>
+                Profile Image
+              </label>
               <div className={styles.inputWrapper}>
                 <div className={styles.profileImages}>
                   {[
                     { src: boy1, name: "boy1.jpeg" },
                     { src: boy2, name: "boy2.jpeg" },
-                    { src: girl1, name: "girl1.jpeg" }
+                    { src: girl1, name: "girl1.jpeg" },
                   ].map((img) => (
                     <label key={img.name} className={styles.profileImageLabel}>
                       <input
                         type="radio"
                         name="profileImage"
+                        id="profileImage"
                         value={img.name}
                         checked={this.state.profileImage === img.name}
                         onChange={this.handleChange}
@@ -228,12 +242,13 @@ class EmployeeForm extends Component {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Gender</label>
+              <label htmlFor="gender">Gender</label>
               <div className={styles.inputWrapper}>
                 <div className={styles.radioGroup}>
                   <label>
                     <input
                       type="radio"
+                      id="gender"
                       name="gender"
                       value="Male"
                       checked={this.state.gender === "Male"}
@@ -261,21 +276,24 @@ class EmployeeForm extends Component {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Department</label>
+              <label htmlFor="department">Department</label>
               <div className={styles.inputWrapper}>
                 <div className={styles.checkboxGroup}>
-                  {["HR", "Sales", "Finance", "Engineer", "Others"].map((dept) => (
-                    <label key={dept}>
-                      <input
-                        type="checkbox"
-                        value={dept}
-                        checked={this.state.department.includes(dept)}
-                        onChange={this.handleCheckboxChange}
-                        disabled={loading}
-                      />
-                      {dept}
-                    </label>
-                  ))}
+                  {["HR", "Sales", "Finance", "Engineer", "Others"].map(
+                    (dept) => (
+                      <label key={dept}>
+                        <input
+                          type="checkbox"
+                          id="department"
+                          value={dept}
+                          checked={this.state.department.includes(dept)}
+                          onChange={this.handleCheckboxChange}
+                          disabled={loading}
+                        />
+                        {dept}
+                      </label>
+                    )
+                  )}
                 </div>
                 {errors.department && (
                   <span className={styles.error}>{errors.department}</span>
@@ -304,7 +322,7 @@ class EmployeeForm extends Component {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Start Date</label>
+              <label htmlFor="startDate">Start Date</label>
               <div className={styles.inputWrapper}>
                 <div className={styles.startDate}>
                   <select
@@ -312,6 +330,7 @@ class EmployeeForm extends Component {
                     value={this.state.startDateDay}
                     onChange={this.handleChange}
                     disabled={loading}
+                    id="startDate"
                   >
                     <option value="">Day</option>
                     {[...Array(31)].map((_, i) => (
@@ -353,11 +372,14 @@ class EmployeeForm extends Component {
                     disabled={loading}
                   >
                     <option value="">Year</option>
-                    {[...Array(50)].map((_, i) => (
-                      <option key={i} value={2025 - i}>
-                        {2025 - i}
-                      </option>
-                    ))}
+                    {[...Array(50)].map((_, i) => {
+                      const year = 2025 - i;
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 {(errors.startDateDay ||
@@ -373,10 +395,11 @@ class EmployeeForm extends Component {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Notes</label>
+              <label htmlFor="notes">Notes</label>
               <div className={styles.inputWrapper}>
                 <textarea
                   name="notes"
+                  id="notes"
                   value={this.state.notes || ""}
                   onChange={this.handleChange}
                   placeholder="Enter notes"
@@ -395,12 +418,16 @@ class EmployeeForm extends Component {
                 Cancel
               </button>
               <div className={styles.rightButtons}>
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className={styles.submitButton}
                   disabled={loading}
                 >
-                  {loading ? "Processing..." : (this.state.id ? "Update" : "Submit")}
+                  {loading
+                    ? "Processing..."
+                    : this.state.id
+                    ? "Update"
+                    : "Submit"}
                 </button>
                 <button
                   type="button"
