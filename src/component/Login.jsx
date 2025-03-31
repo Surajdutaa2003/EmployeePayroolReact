@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { Button, Typography, Container, Box } from "@mui/material";
+
 import "../styles/Login.scss"; 
+import Footer from "./Footer";
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -21,10 +23,8 @@ class Login extends Component {
     
     this.setState({ user: decodedUser, isLoading: true });
 
-    
     localStorage.setItem("user", JSON.stringify(decodedUser));
 
- 
     setTimeout(() => {
       this.props.navigate("/employees");
     }, 1000);
@@ -32,11 +32,45 @@ class Login extends Component {
 
   handleError = () => {
     alert("Login Failed! Please try again.");
-    };
+  };
 
   handleLogout = () => {
     this.setState({ user: null });
     localStorage.removeItem("user");
+  };
+
+  renderAuthSection = () => {
+    const { isLoading, user } = this.state;
+
+    if (isLoading) {
+      return <div className="spinner"></div>;
+    }
+
+    if (user) {
+      return (
+        <div className="welcome-section">
+          <Typography variant="h6" className="welcome-text">
+            Welcome, {user.name}!
+          </Typography>
+          <Button
+            variant="outlined"
+            onClick={this.handleLogout}
+            className="logout-button"
+          >
+            Logout
+          </Button>
+        </div>
+      );
+    }
+
+    return (
+      <GoogleLogin
+        onSuccess={this.handleSuccess}
+        onError={this.handleError}
+        className="google-login-button"
+        data-testid="google-login"
+      />
+    );
   };
 
   render() {
@@ -51,35 +85,15 @@ class Login extends Component {
               Sign in to manage your payroll
             </Typography>
 
-            {this.state.isLoading ? (
-              <div className="spinner"></div> 
-            ) : this.state.user ? (
-              <div className="welcome-section">
-                <Typography variant="h6" className="welcome-text">
-                  Welcome, {this.state.user.name}!
-                </Typography>
-                <Button
-                  variant="outlined"
-                  onClick={this.handleLogout}
-                  className="logout-button"
-                >
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <GoogleLogin
-                onSuccess={this.handleSuccess}
-                onError={this.handleError}
-                className="google-login-button"
-                data-testid="google-login"
-                 
-              />
-            )}
+            {this.renderAuthSection()}
           </Box> 
+          <Footer/>
+
         </Container>
       </GoogleOAuthProvider>
     );
+
   }
 }
 
-export default Login; 
+export default Login;

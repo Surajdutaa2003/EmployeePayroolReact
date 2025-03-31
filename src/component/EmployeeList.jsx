@@ -31,7 +31,7 @@ class EmployeeList extends Component {
 
   handleDelete = async (id) => {
     try {
-      const message = await deleteEmployee(id);
+      await deleteEmployee(id); 
       this.fetchEmployees(); 
     } catch (error) {
       this.setState({ error: error.message });
@@ -166,7 +166,7 @@ class EmployeeList extends Component {
                   <td>
                     {Array.isArray(employee.department) ? (
                       employee.department.map((dept, index) => (
-                        <span key={index} className={styles.departmentTag}>
+                        <span key={dept} className={styles.departmentTag}>
                           {this.highlightText(dept, searchQuery)}
                         </span>
                       ))
