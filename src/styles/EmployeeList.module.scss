@@ -22,7 +22,7 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    flex-wrap: wrap;
 
     .details {
       h2 {
@@ -37,62 +37,56 @@ body, html {
     .headerActions {
       display: flex;
       align-items: center;
-      gap: 10px; 
+      gap: 10px;
+      position: relative;
 
       .searchContainer {
         position: relative;
         cursor: pointer;
-      
+
         .searchInput {
-          position: relative;
           padding: 6px 30px 6px 10px;
           border: 1px solid #ddd;
-          border-radius: 50px; 
+          border-radius: 50px;
           font-size: 14px;
-          width: 30px; 
-          height: 30px; 
-          color: #333; 
+          width: 30px;
+          height: 30px;
+          color: #333;
           background-color: #fff;
-          transition: width 0.3s ease, padding 0.3s ease; 
-          overflow: hidden; 
-          right: 60px;
-      
+          transition: width 0.3s ease, padding 0.3s ease;
+          overflow: hidden;
+
           &::placeholder {
-            color: #999; 
-            font-style: italic;
-            opacity: 0; 
+            opacity: 0;
             transition: opacity 0.3s ease;
           }
-      
+
           &:focus {
-            width: 180px; 
-            padding: 6px 30px 6px 10px; 
-            border-radius: 4px; 
+            width: 180px;
+            border-radius: 4px;
             outline: none;
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-      
+
             &::placeholder {
-              opacity: 1; 
+              opacity: 1;
             }
           }
         }
-      
+
         .searchIcon {
           position: absolute;
-          right: 73px;
+          right: 10px;
           top: 50%;
           transform: translateY(-50%);
-          color: #666; 
+          color: #666;
           font-size: 16px;
           pointer-events: none;
         }
       }
 
       .addButton {
-        position: relative;
-        display: flex
-    ;
+        display: flex;
         align-items: center;
         gap: 5px;
         padding: 6px 12px;
@@ -102,7 +96,7 @@ body, html {
         border-radius: 4px;
         font-size: 14px;
         transition: background-color 0.3s ease;
-        right: 47px;
+        margin-left: auto;
 
         &:hover {
           background-color: #218838;
@@ -116,8 +110,8 @@ body, html {
   }
 
   .employeeTable {
-    width: 90%; 
-    margin: 0 auto; 
+    width: 90%;
+    margin: 0 auto;
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -126,22 +120,14 @@ body, html {
     margin-top: 10px;
 
     thead {
-      background-color: #4a5a6b; 
+      background-color: #4a5a6b;
       color: #fff;
 
       th {
-        padding: 10px; 
+        padding: 10px;
         text-align: left;
         font-size: 14px;
         text-transform: uppercase;
-      }
-
-     
-      th:nth-child(4) {
-        padding-right: 5px; 
-      }
-      th:nth-child(5) {
-        padding-left: 5px; 
       }
     }
 
@@ -159,7 +145,7 @@ body, html {
         }
 
         td {
-          padding: 10px; 
+          padding: 10px;
           font-size: 14px;
           color: #333;
 
@@ -169,13 +155,12 @@ body, html {
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            left:8px;
-
+            left: 8px;
           }
 
           .departmentTag {
             display: inline-block;
-            background-color: #E9FEA5; 
+            background-color: #E9FEA5;
             color: black;
             padding: 5px 10px;
             border-radius: 12px;
@@ -207,21 +192,61 @@ body, html {
             }
           }
         }
-
-        
-        td:nth-child(4) {
-          padding-right: 5px; 
-        }
-        td:nth-child(5) {
-          padding-left: 5px; 
-        }
       }
     }
   }
 }
 
-.highlight {
-  background-color: yellow;
-  padding: 0 2px;
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .headerActions {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  searchContainer {
+    .searchInput {
+      max-width: 150px;
+      padding-right: 30px; 
+    }
+
+    .searchIcon {
+      right: 10px; 
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+
+  
+  .addButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .employeeTable {
+    width: 100%;
+    font-size: 12px;
+
+    thead {
+      th {
+        font-size: 12px;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
-// aa
