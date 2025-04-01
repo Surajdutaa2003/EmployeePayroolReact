@@ -2,69 +2,74 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: auto; /* Let the browser handle scrolling */
+  overflow: auto;
+  font-size: 16px; 
 }
 
 .container {
   position: relative;
   background-color: #f5f5f5;
-  min-height: calc(100vh - 50px); /* Use min-height instead of height */
+  min-height: calc(100vh - 3.125rem); 
   padding: 0;
-  margin-top: 50px;
-z-index: 1;
+  margin-top: 3.125rem;
+  z-index: 1;
+
   .formContainer {
     position: relative;
-    max-width: 750px; /* Match the width of the form in the screenshot */
-    margin: 20px auto;
+    max-width: 46.875rem; 
+    width: 90%; 
+    margin: 1.25rem auto; 
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    top: 19px;
-    right: 52px;
+    padding: clamp(1rem, 2vw, 1.25rem); 
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+    top: 1.1875rem;
+    right: 0; 
     z-index: 1;
-    
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 0.9375rem;
 
       h1 {
-        font-size: 24px;
+        font-size: clamp(1.25rem, 3vw, 1.5rem); 
         color: #333;
-        margin: 0 0 20px;
+        margin: 0 0 1.25rem;
         text-align: center;
       }
 
       .formGroup {
         display: flex;
-        align-items: flex-start; 
-        gap: 10px;
+        flex-direction: row; 
+        align-items: center; 
+        gap: 0.625rem;
 
         label {
-          font-size: 14px;
+          font-size: 0.875rem;
           color: #333;
           font-weight: bold;
-          width: 100px; 
-          padding-top: 5px; 
+          width: 6.25rem; 
+          padding-top: 0.3125rem;
         }
 
         .inputWrapper {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          gap: 0.3125rem;
+          width: 100%; 
 
           input[type="text"],
           select,
           textarea {
             width: 100%;
-            padding: 8px;
+            padding: 0.5rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
             color: #333;
+            box-sizing: border-box;
 
             &::placeholder {
               color: #999;
@@ -74,33 +79,36 @@ z-index: 1;
             &:focus {
               outline: none;
               border-color: #007bff;
-              box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+              box-shadow: 0 0 0.3125rem rgba(0, 123, 255, 0.3);
             }
           }
 
           textarea {
             resize: vertical;
-            min-height: 96px;
+            min-height: 6rem;
           }
 
-          
           .profileImages {
+            position: relative;
             display: flex;
-            gap: 15px; 
+            flex-wrap: wrap;
+            gap: 0.9375rem;
+            top: 10px;
 
             .profileImageLabel {
               display: flex;
               align-items: center;
-              gap: 5px; 
+              gap: 0.3125rem;
+
               input[type="radio"] {
-                width: 16px;
-                height: 16px;
-                margin: 0; 
+                width: 1rem;
+                height: 1rem;
+                margin: 0;
               }
 
               img {
-                width: 40px;
-                height: 40px;
+                width: clamp(2rem, 5vw, 2.5rem);
+                height: clamp(2rem, 5vw, 2.5rem);
                 border-radius: 50%;
                 object-fit: cover;
                 border: 2px solid transparent;
@@ -108,73 +116,71 @@ z-index: 1;
               }
 
               input:checked + img {
-                border: 2px solid #007bff; 
+                border: 2px solid #007bff;
               }
             }
           }
 
-          
           .radioGroup {
             display: flex;
-            gap: 20px; 
+            flex-wrap: wrap;
+            gap: 1.25rem;
 
             label {
               display: flex;
               align-items: center;
-              gap: 5px;
+              gap: 0.3125rem;
               font-weight: normal;
               width: auto;
 
               input[type="radio"] {
                 margin: 0;
-                width: 16px;
-                height: 16px;
+                width: 1rem;
+                height: 1rem;
               }
             }
           }
 
-        
           .checkboxGroup {
             display: flex;
-            gap: 20px; 
             flex-wrap: wrap;
+            gap: 1.25rem;
 
             label {
               display: flex;
               align-items: center;
-              gap: 5px;
+              gap: 0.3125rem;
               font-weight: normal;
               width: auto;
 
               input[type="checkbox"] {
                 margin: 0;
-                width: 16px;
-                height: 16px;
+                width: 1rem;
+                height: 1rem;
               }
             }
           }
 
-         
           select[name="salary"] {
-            width: 150px; 
+            width: 9.375rem; 
           }
 
-          
           .startDate {
             display: flex;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 0.625rem;
 
             select {
-              padding: 8px;
+              padding: 0.5rem;
               border: 1px solid #ddd;
-              border-radius: 4px;
-              font-size: 14px;
+              border-radius: 0.25rem;
+              font-size: 0.875rem;
               color: #333;
-
+              width: 6rem; 
               &:focus {
                 outline: none;
                 border-color: #007bff;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+                box-shadow: 0 0 0.3125rem rgba(0, 123, 255, 0.3);
               }
             }
           }
@@ -183,59 +189,51 @@ z-index: 1;
 
       .buttonContainer {
         display: flex;
+        flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 1.25rem;
+        gap: 0.625rem;
 
         .cancelButton {
-          padding: 8px 16px;
-          background-color: #ccc; 
-          color: #333; 
+          padding: 0.5rem 1rem;
+          background-color: #ccc;
+          color: #333;
           border: none;
-          border-radius: 4px;
-          font-size: 14px;
+          border-radius: 0.25rem;
+          font-size: 0.875rem;
           cursor: pointer;
           transition: background-color 0.3s ease;
+          flex: 0 1 auto; 
 
           &:hover {
-            background-color: #dc3545; 
-            color: #fff; 
+            background-color: #dc3545;
+            color: #fff;
           }
         }
 
         .rightButtons {
           display: flex;
-          gap: 10px;
+          flex-wrap: nowrap; 
+          gap: 0.625rem;
+          flex: 0 1 auto; 
+          justify-content: flex-end;
 
-          .submitButton {
-            padding: 8px 16px;
-            background-color: #ccc; 
-            color: #333; 
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-              background-color: #82A70C; 
-              color: #fff; 
-            }
-          }
-
+          .submitButton,
           .resetButton {
-            padding: 8px 16px;
+            padding: 0.5rem 1rem;
             background-color: #ccc;
-            color: #333; 
+            color: #333;
             border: none;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            flex: 0 1 auto;
 
             &:hover {
-              background-color: #82A70C; 
-              color: #fff; 
+              background-color: #82A70C;
+              color: #fff;
             }
           }
         }
@@ -243,14 +241,149 @@ z-index: 1;
 
       .error {
         color: #dc3545;
-        font-size: 12px;
-        margin-top: 5px;
+        font-size: 0.75rem;
+        margin-top: 0.3125rem;
       }
     }
   }
 }
 
-.pf{
+.pf {
   position: relative;
-  top: 10px;
+  top: 0.625rem;
+}
+
+
+@media (max-width: 767px) {
+  .container .formContainer {
+    width: 95%;
+    padding: 1rem;
+    top: 0.625rem;
+  }
+
+  .formGroup {
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      width: 100%;
+    }
+
+    .inputWrapper {
+      .profileImages {
+        flex-wrap: wrap; 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: flex-start; 
+        margin-top: 0.625rem; 
+      }
+
+      .radioGroup {
+        flex-wrap: wrap; 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: flex-start;
+        margin-top: 0.625rem; 
+      }
+
+      .checkboxGroup {
+        flex-wrap: wrap; 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: flex-start; 
+        margin-top: 0.625rem;
+      }
+
+      select[name="salary"] {
+        width: 100%;
+        max-width: 9.375rem;
+      }
+
+      .startDate {
+        flex-wrap: wrap; 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: flex-start; 
+        margin-top: 0.625rem; 
+
+        select {
+          width: 100%;
+          max-width: 6rem;
+        }
+      }
+    }
+  }
+
+  .buttonContainer {
+    flex-wrap: wrap;
+
+    .cancelButton {
+      flex: 1;
+    }
+
+    .rightButtons {
+      flex-wrap: wrap;
+      flex: 2;
+      justify-content: space-between;
+
+      .submitButton,
+      .resetButton {
+        flex: 1;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container .formContainer {
+    width: 85%;
+  }
+
+  .formGroup {
+    flex-direction: row;
+    align-items: center;
+
+    label {
+      width: 6.25rem;
+    }
+
+    .inputWrapper {
+      select[name="salary"] {
+        width: 100%;
+        max-width: 9.375rem;
+      }
+
+      .startDate {
+        select {
+          width: 100%;
+          max-width: 6rem;
+        }
+      }
+    }
+  }
+
+  .buttonContainer {
+    flex-wrap: wrap;
+
+    .cancelButton {
+      flex: 1;
+    }
+
+    .rightButtons {
+      flex: 2;
+      justify-content: flex-end;
+
+      .submitButton,
+      .resetButton {
+        flex: 1;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .container .formContainer {
+    width: 750px; 
+  }
 }
